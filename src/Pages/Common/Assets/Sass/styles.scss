@@ -1,0 +1,49 @@
+.header {
+    background-color: #FFF;
+    color: #000;
+
+    .navbar-brand img {
+        width: 190px;
+    }
+}
+
+.home {
+    .menu-item {
+        background-color: #FFF;
+        border-radius: 0.3rem;
+        border: solid #FFF 2px;
+        padding: 1rem 2rem;
+        display: block;
+        text-decoration: none;
+        cursor: pointer;
+
+        &:hover,
+        &:focus,
+        &:active {
+            text-decoration: none;
+
+            span {
+                color: #000;
+            }
+
+            i {
+                color: #000;
+            }
+
+            border-color: #000;
+        }
+
+        span {
+            font-size: 2rem;
+            font-weight: 300;
+            color: #666;
+        }
+
+        i {
+            font-size: 2em;
+            display: block;
+            margin-bottom: 10px;
+            color: #666;
+        }
+    }
+}
