@@ -1,15 +1,14 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { FormattedMessage } from "react-intl";
 import { connect } from "react-redux";
+import { Link } from "react-router-dom";
 import {
     Collapse,
     Container,
     Nav,
     Navbar,
-    NavbarBrand,
     NavbarToggler,
     NavItem,
-    NavLink,
 } from "reactstrap";
 import logo from "./Assets/Images/RickAndMorty.png";
 import "./Assets/Sass/styles.scss";
@@ -21,72 +20,73 @@ class Header extends Component {
     };
 
     render() {
-        const { user, isLoading, } = this.props;
+        const { user, isLoading } = this.props;
         return (
             <div id='header' className='header mb-5'>
                 <Container>
                     <Navbar light expand='md'>
-                        <NavbarBrand href='/'>
+                        <Link className='navbar-brand' to='/'>
                             <img
                                 src={logo}
                                 alt={process.env.REACT_APP_NAME}
-                                className="img-fluid"
+                                className='img-fluid'
                             />
-                        </NavbarBrand>
+                        </Link>
                         <NavbarToggler onClick={this.props.toggleCollapse} />
                         <Collapse isOpen={this.props.isOpen} navbar>
                             <Nav className='ml-auto' navbar>
-                                <Fragment>
-                                    <NavItem>
-                                        {
-                                            !isLoading && user
-                                            ?
-                                            (<NavLink href='/profile'>
-                                                <FormattedMessage
-                                                    id='app.profile'
-                                                    defaultMessage='Profile'
-                                                />
-                                            </NavLink>) : 
-                                            (<NavLink href='/login'>
-                                                <FormattedMessage
-                                                    id='app.login'
-                                                    defaultMessage='Login'
-                                                />
-                                            </NavLink>) 
-                                        }
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink href='/characters'>
+                                <NavItem>
+                                    {!isLoading && user ? (
+                                        <Link
+                                            className='nav-link'
+                                            to='/profile'>
                                             <FormattedMessage
-                                                id='app.characters'
-                                                defaultMessage='Characters'
+                                                id='app.profile'
+                                                defaultMessage='Profile'
                                             />
-                                        </NavLink>
-                                    </NavItem>
-                                    <NavItem>
-                                        <NavLink href='/locations'>
+                                        </Link>
+                                    ) : (
+                                        <Link className='nav-link' to='/login'>
                                             <FormattedMessage
-                                                id='app.locations'
-                                                defaultMessage='Locations'
+                                                id='app.login'
+                                                defaultMessage='Login'
                                             />
-                                        </NavLink>
-                                    </NavItem>
+                                        </Link>
+                                    )}
+                                </NavItem>
+                                <NavItem>
+                                    <Link className='nav-link' to='/characters'>
+                                        <FormattedMessage
+                                            id='app.characters'
+                                            defaultMessage='Characters'
+                                        />
+                                    </Link>
+                                </NavItem>
+                                <NavItem>
+                                    <Link className='nav-link' to='/locations'>
+                                        <FormattedMessage
+                                            id='app.locations'
+                                            defaultMessage='Locations'
+                                        />
+                                    </Link>
+                                </NavItem>
+                                <NavItem>
+                                    <Link className='nav-link' to='/episodes'>
+                                        <FormattedMessage
+                                            id='app.episodes'
+                                            defaultMessage='Episodes'
+                                        />
+                                    </Link>
+                                </NavItem>
+                                {user ? (
                                     <NavItem>
-                                        <NavLink href='/episodes'>
-                                            <FormattedMessage
-                                                id='app.episodes'
-                                                defaultMessage='Episodes'
-                                            />
-                                        </NavLink>
-                                    </NavItem>
-                                    { user ? (
-                                    <NavItem>
-                                        <NavLink href='/logout'>
+                                        <Link className='nav-link' to='/logout'>
                                             <i className='fas fa-sign-out-alt' />
-                                        </NavLink>
+                                        </Link>
                                     </NavItem>
-                                    ) : ''}
-                                </Fragment>
+                                ) : (
+                                    ""
+                                )}
                             </Nav>
                         </Collapse>
                     </Navbar>

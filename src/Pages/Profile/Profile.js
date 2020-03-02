@@ -6,23 +6,29 @@ import { ProfileActions } from "../../Actions";
 import "./Assets/Sass/styles.scss";
 
 class Profile extends Component {
-
     state = {
         profile: false,
-    }
+    };
 
     componentDidMount() {
-        let profile = JSON.parse(sessionStorage.getItem("profile"));
+        const profile = JSON.parse(sessionStorage.getItem("profile"));
         if (profile === null) {
             this.props.getProfile();
         } else {
-            this.setState({ profile: JSON.parse(sessionStorage.getItem("profile"))});
+            this.setState({
+                profile: JSON.parse(sessionStorage.getItem("profile")),
+            });
         }
     }
 
     componentDidUpdate(prevProps, prevState) {
-        if(prevProps.profile !== this.props.profile && this.props.profile !== false){
-            this.setState({ profile: JSON.parse(sessionStorage.getItem("profile"))});
+        if (
+            prevProps.profile !== this.props.profile &&
+            this.props.profile !== false
+        ) {
+            this.setState({
+                profile: JSON.parse(sessionStorage.getItem("profile")),
+            });
         }
     }
 
@@ -32,39 +38,39 @@ class Profile extends Component {
         return (
             <Container className='profile'>
                 <Row>
-                    { isLoading  ?  <i className='fa fa-spinner fa-spinner fa-spin' /> : '' }
-                    { profile !== false ?  (
-                    <Col
-                        sm={{ size: 10, offset: 1 }}
-                        md={{ size: 6, offset: 3 }}
-                        className='text-center'>
-                        <h2 className='mb-5 text-uppercase'>
-                            <FormattedMessage
-                                id='app.profile'
-                                defaultMessage='Profile'
-                            />
-                        </h2>
-                        <b>
-                            <FormattedMessage
-                                id='app.username'
-                                defaultMessage='Username'
-                            />
-                            :
-                        </b>{" "}
-                        {profile.name}
-                        <br />
-                        <b>
-                            <FormattedMessage
-                                id='app.email'
-                                defaultMessage='Email'
-                            />
-                            :
-                        </b>{" "}
-                        {profile.email}
-                    </Col>
-                    )
-                    :
-                    ''}
+                    {isLoading && (
+                        <i className='fa fa-spinner fa-spinner fa-spin' />
+                    )}
+                    {profile !== false && (
+                        <Col
+                            sm={{ size: 10, offset: 1 }}
+                            md={{ size: 6, offset: 3 }}
+                            className='text-center'>
+                            <h2 className='mb-5 text-uppercase'>
+                                <FormattedMessage
+                                    id='app.profile'
+                                    defaultMessage='Profile'
+                                />
+                            </h2>
+                            <b>
+                                <FormattedMessage
+                                    id='app.username'
+                                    defaultMessage='Username'
+                                />
+                                :
+                            </b>{" "}
+                            {profile.name}
+                            <br />
+                            <b>
+                                <FormattedMessage
+                                    id='app.email'
+                                    defaultMessage='Email'
+                                />
+                                :
+                            </b>{" "}
+                            {profile.email}
+                        </Col>
+                    )}
                 </Row>
             </Container>
         );
@@ -82,7 +88,7 @@ function mapStateToProps(state) {
     const { profile, isLoading } = state.me;
     return {
         profile,
-        isLoading
+        isLoading,
     };
 }
 

@@ -6,7 +6,6 @@ import { AlertActions } from "../Actions";
 import { PrivateRoute } from "../Components";
 import { history } from "../Helpers";
 import { Login, Logout } from "../Pages/Auth";
-import logo from "../Pages/Auth/Assets/Images/RickAndMorty.png";
 import { Character, Characters } from "../Pages/Character";
 import { Header, Home, NotFound } from "../Pages/Common";
 import { Episode, Episodes } from "../Pages/Episode";
@@ -18,7 +17,7 @@ class App extends Component {
         super(props);
 
         this.state = {
-            isOpen: false
+            isOpen: false,
         };
 
         const { dispatch } = this.props;
@@ -41,10 +40,25 @@ class App extends Component {
         const { alert } = this.props;
         return (
             <Fragment>
-                <Header
-                    toggleCollapse={this.toggleCollapse}
-                    isOpen={this.state.isOpen}
-                />
+                <Router history={history}>
+                    <Header
+                        toggleCollapse={this.toggleCollapse}
+                        isOpen={this.state.isOpen}
+                    />
+                    <Switch>
+                        <Route exact path='/' component={Home} />
+                        <Route path='/login' component={Login} />
+                        <PrivateRoute path='/logout' component={Logout} />
+                        <PrivateRoute path='/profile' component={Profile} />
+                        <Route path='/characters' component={Characters} />
+                        <Route path='/character/:id' component={Character} />
+                        <Route path='/locations' component={Locations} />
+                        <Route path='/location/:id' component={Location} />
+                        <Route path='/episodes' component={Episodes} />
+                        <Route path='/episode/:id' component={Episode} />
+                        <Route component={NotFound} />
+                    </Switch>
+                </Router>
 
                 {alert.message && (
                     <Container>
@@ -67,22 +81,6 @@ class App extends Component {
                         </Row>
                     </Container>
                 )}
-
-                <Router history={history}>
-                    <Switch>
-                        <Route exact path='/' component={Home} />
-                        <Route path='/login' component={Login} />
-                        <PrivateRoute path='/logout' component={Logout} />
-                        <PrivateRoute path='/profile' component={Profile} />
-                        <Route path='/characters' component={Characters} />
-                        <Route path='/character/:id' component={Character} />
-                        <Route path='/locations' component={Locations} />
-                        <Route path='/location/:id' component={Location} />
-                        <Route path='/episodes' component={Episodes} />
-                        <Route path='/episode/:id' component={Episode} />
-                        <Route component={NotFound} />
-                    </Switch>
-                </Router>
             </Fragment>
         );
     }

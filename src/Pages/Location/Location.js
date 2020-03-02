@@ -6,7 +6,7 @@ import { item as fetchItem } from "../../Services/ApiServices";
 import "./Assets/Sass/styles.scss";
 
 const Location = () => {
-    let { id } = useParams();
+    const { id } = useParams();
     const [location, setLocation] = useState(false);
 
     useEffect(() => {
@@ -17,8 +17,10 @@ const Location = () => {
                 }
             });
         };
-        fetchData();
-    }, [id]);
+        if (location === false) {
+            fetchData();
+        }
+    }, [id, location]);
 
     return (
         <Container className='locations'>
@@ -30,7 +32,7 @@ const Location = () => {
                             defaultMessage='Location'
                         />
                     </h2>
-                    {location ? (
+                    {location && (
                         <article key={location.id} className='item-wrapper'>
                             <div className='item-content'>
                                 <h3 className='item-title'>{location.name}</h3>
@@ -55,8 +57,6 @@ const Location = () => {
                                 </p>
                             </div>
                         </article>
-                    ) : (
-                        ""
                     )}
                 </Col>
             </Row>

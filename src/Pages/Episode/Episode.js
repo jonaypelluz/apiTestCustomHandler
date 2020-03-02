@@ -17,8 +17,10 @@ const Episode = () => {
                 }
             });
         };
-        fetchData();
-    }, [id]);
+        if (episode === false) {
+            fetchData();
+        }
+    }, [episode, id]);
 
     return (
         <Container className='episodes'>
@@ -30,7 +32,7 @@ const Episode = () => {
                             defaultMessage='Episode'
                         />
                     </h2>
-                    {episode ? (
+                    {episode && (
                         <article key={episode.id} className='item-wrapper'>
                             <div className='item-content'>
                                 <h3 className='item-title'>{episode.name}</h3>
@@ -55,8 +57,6 @@ const Episode = () => {
                                 </p>
                             </div>
                         </article>
-                    ) : (
-                        ""
                     )}
                 </Col>
             </Row>

@@ -17,8 +17,10 @@ const Character = () => {
                 }
             });
         };
-        fetchData();
-    }, [id]);
+        if (character === false) {
+            fetchData();
+        }
+    }, [character, id]);
 
     return (
         <Container className='characters'>
@@ -30,7 +32,7 @@ const Character = () => {
                             defaultMessage='Character'
                         />
                     </h2>
-                    {character ? (
+                    {character && (
                         <article key={character.id} className='item-wrapper'>
                             <div className='item-content'>
                                 <img
@@ -69,8 +71,6 @@ const Character = () => {
                                 </p>
                             </div>
                         </article>
-                    ) : (
-                        ""
                     )}
                 </Col>
             </Row>

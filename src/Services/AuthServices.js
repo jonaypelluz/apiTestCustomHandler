@@ -13,10 +13,9 @@ export const login = (email, password) => {
             const data = response.data;
             if (data.message === "Error") {
                 return Promise.reject(data.data);
-            } else {
-                saveUser(JSON.stringify(data.data));
-                return data.data;
             }
+            saveUser(JSON.stringify(data.data));
+            return data.data;
         })
         .catch(error => {
             return Promise.reject(error);
@@ -37,10 +36,9 @@ export const refresh = () => {
             const data = response.data;
             if (data.message === "Error") {
                 return Promise.reject(data.data);
-            } else {
-                saveUser(JSON.stringify(data.data));
-                return data.data;
             }
+            saveUser(JSON.stringify(data.data));
+            return data.data;
         })
         .catch(error => {
             return Promise.reject(error);

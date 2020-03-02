@@ -1,4 +1,4 @@
-import React, { Fragment, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { FormattedMessage } from "react-intl";
 import { Badge } from "reactstrap";
 import { getParameterByName } from "../Helpers";
@@ -45,8 +45,10 @@ export default function InfiniteList(props) {
         if (query !== "") {
             _preQuery += _preQuery !== "" ? "&name=" + query : "name=" + query;
         }
-        setPreQuery(_preQuery);
-    }, [page, query]);
+        if (_preQuery !== preQuery) {
+            setPreQuery(_preQuery);
+        }
+    }, [page, preQuery, query]);
 
     useEffect(() => {
         if (props.query !== query && page > 1) {
@@ -94,7 +96,7 @@ export default function InfiniteList(props) {
                 <article key={item.id} className='item-wrapper'>
                     <div className='item-content'>
                         {props.type === "character" ? (
-                            <Fragment>
+                            <>
                                 <img
                                     src={item.image}
                                     className='img-fluid'
@@ -135,9 +137,9 @@ export default function InfiniteList(props) {
                                     </b>{" "}
                                     {item.location.name}
                                 </p>
-                            </Fragment>
+                            </>
                         ) : props.type === "location" ? (
-                            <Fragment>
+                            <>
                                 <h3 className='item-title'>
                                     <Badge
                                         href={"location/" + item.id}
@@ -164,9 +166,9 @@ export default function InfiniteList(props) {
                                     </b>{" "}
                                     {item.dimension}
                                 </p>
-                            </Fragment>
+                            </>
                         ) : props.type === "episode" ? (
-                            <Fragment>
+                            <>
                                 <h3 className='item-title'>
                                     <Badge
                                         href={"episode/" + item.id}
@@ -193,7 +195,7 @@ export default function InfiniteList(props) {
                                     </b>{" "}
                                     {item.episode}
                                 </p>
-                            </Fragment>
+                            </>
                         ) : (
                             "Nothing found!"
                         )}
