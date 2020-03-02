@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Route, Router, Switch } from "react-router-dom";
 import { Alert, Col, Container, Row } from "reactstrap";
@@ -39,7 +39,7 @@ class App extends Component {
     render() {
         const { alert } = this.props;
         return (
-            <Fragment>
+            <>
                 <Router history={history}>
                     <Header
                         toggleCollapse={this.toggleCollapse}
@@ -72,7 +72,7 @@ class App extends Component {
                             ) : (
                                 <Col
                                     className='mb-3'
-                                    md={{ size: 6, offset: 3 }}>
+                                    md={{ size: 8, offset: 2 }}>
                                     <Alert color={alert.type}>
                                         {alert.message}
                                     </Alert>
@@ -81,7 +81,7 @@ class App extends Component {
                         </Row>
                     </Container>
                 )}
-            </Fragment>
+            </>
         );
     }
 }
