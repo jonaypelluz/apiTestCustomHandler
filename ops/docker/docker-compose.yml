@@ -1,0 +1,23 @@
+version: "3.8"
+
+services:
+  app:
+    container_name: app
+    build:
+      context: ../../
+      dockerfile: ops/docker/app/Dockerfile
+    depends_on:
+      - mariadb
+    networks:
+      default:
+        aliases:
+          - rick-and-morty.local
+
+  mariadb:
+    container_name: app-db
+    image: mariadb:10.3.35
+    environment:
+      - MYSQL_DATABASE=${DB_SCHEMA}
+      - MYSQL_ROOT_PASSWORD=${DB_PASS}
+    ports:
+      - 3306:3306
