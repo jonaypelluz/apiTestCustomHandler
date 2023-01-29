@@ -6,18 +6,20 @@ services:
     build:
       context: ../../
       dockerfile: ops/docker/app/Dockerfile
-    depends_on:
-      - mariadb
+    working_dir: /app
+    volumes:
+      - ../../:/app
+      - /app/node_modules
+    environment:
+      - REACT_APP_API_URL=${REACT_APP_API_URL}
+      - REACT_APP_NAME=${REACT_APP_NAME}
+    ports:
+      - '3000:3000'
     networks:
       default:
         aliases:
           - rick-and-morty.local
 
-  mariadb:
-    container_name: app-db
-    image: mariadb:10.3.35
-    environment:
-      - MYSQL_DATABASE=${DB_SCHEMA}
-      - MYSQL_ROOT_PASSWORD=${DB_PASS}
-    ports:
-      - 3306:3306
+volumes: {
+  node_modules
+}

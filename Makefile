@@ -13,6 +13,8 @@ build:
 start:
 	docker-compose ${DOCKER_COMPOSE} up -d
 
+restart: stop start
+
 ## Stops the container
 stop: is-running
 	docker-compose ${DOCKER_COMPOSE} stop
@@ -28,21 +30,6 @@ lint: is-running
 ## Fix javascript formatting errors
 lint-fix: is-running
 	@docker exec -it ${CONTAINER} yarn lint-fix
-
-## Install node libraries, ex. make lib=XXX yarn-add
-yarn-add:
-	@docker exec -it ${CONTAINER} yarn add ${lib}
-
-yarn-build:
-	@docker exec -it ${CONTAINER} yarn build
-
-## Install node libraries, ex. make lib=XXX yarn-add-dev
-yarn-add-dev:
-	@docker exec -it ${CONTAINER} yarn add --dev ${lib}
-
-## It builds the static site in the folder "out"
-yarn-export:
-	@docker exec -it ${CONTAINER} yarn export
 
 ## Check if the container is running
 is-running:
