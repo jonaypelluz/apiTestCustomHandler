@@ -23,7 +23,7 @@ const Grid = ({ items }) => {
 };
 
 Grid.propTypes = {
-    items: PropTypes.array
+    items: PropTypes.array.isRequired
 };
 
 export default Grid;

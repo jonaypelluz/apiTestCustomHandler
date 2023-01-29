@@ -1,9 +1,9 @@
 export const TYPES = {
-    CHARACTERERS: 'CHARACTERERS'
+    CHARACTERS: 'CHARACTERS'
 };
 
 const CONVERSIONS = {
-    CHARACTERERS: {
+    CHARACTERS: {
         name: 'title',
         species: 'desc'
     }

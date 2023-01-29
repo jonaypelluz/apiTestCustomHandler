@@ -3,8 +3,9 @@ import { Layout } from 'antd';
 import { useQuery } from '@apollo/client';
 import { Loader } from 'components/loader';
 import { Grid } from 'components/grid';
-import useConvert, { TYPES } from 'helpers/useConvert';
+import useConvert from 'helpers/useConvert';
 import { CHARACTERS_QUERY } from 'services/api/rick-and-morty';
+import { Toast } from 'components/toast';
 
 const { Content } = Layout;
 
@@ -16,10 +17,19 @@ const Home = () => {
     }
 
     if (error) {
-        return <pre>{error.message}</pre>;
+        return (
+            <Toast
+                toastList={[
+                    {
+                        type: 'error',
+                        description: error.message
+                    }
+                ]}
+            />
+        );
     }
 
-    const characters = useConvert(data.characters.results, TYPES.CHARACTERERS);
+    const characters = useConvert(data[CHARACTERS_QUERY.key].results, CHARACTERS_QUERY.type);
 
     return (
         <Content style={{ padding: '0 50px' }}>
