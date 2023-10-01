@@ -54,7 +54,7 @@
         "eslint-plugin-react": "^7.28.0",
         "eslint-plugin-react-hooks": "^4.3.0",
         "prettier": "^3.0.3",
-        "sass": "^1.57.1"
+        "sass": "^1.68.0"
     },
     "engines": {
         "npm": ">=8.19.3 <9.0.0",
