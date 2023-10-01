@@ -1,36 +1,39 @@
 module.exports = {
     env: {
+        es6: true,
         browser: true,
-        es2021: true
+        es2021: true,
+        node: true,
+        jest: true,
     },
-    settings: {
-        react: {
-            version: 'detect'
-        }
-    },
-    extends: ['plugin:react/recommended', 'plugin:prettier/recommended'],
+    extends: ['eslint:recommended', 'plugin:react/recommended', 'prettier'],
     overrides: [],
     parserOptions: {
         parser: '@babel/eslint-parser',
         requireConfigFile: false,
-        ecmaVersion: 'latest',
         ecmaFeatures: {
-            jsx: true
+            jsx: true,
         },
-        sourceType: 'module'
+        ecmaVersion: 'latest',
+        sourceType: 'module',
     },
-    plugins: ['react'],
+    plugins: ['react', 'react-hooks', 'prettier'],
+    settings: {
+        react: {
+            version: 'detect',
+        },
+    },
     rules: {
-        quotes: ['error', 'single'],
+        'prettier/prettier': 'error',
         curly: 'error',
-        semi: 'error',
-        'semi-spacing': 'error',
-        'space-before-blocks': ['error', 'always'],
-        'arrow-spacing': ['error', { before: true, after: true }],
-        'keyword-spacing': ['error', { before: true, after: true }],
-        'comma-spacing': [2, { before: false, after: true }],
-        indent: ['error', 4],
-        'object-curly-spacing': ['error', 'always'],
-        'react/react-in-jsx-scope': 'off'
-    }
+        'react/function-component-definition': [
+            2,
+            {
+                namedComponents: 'arrow-function',
+                unnamedComponents: 'arrow-function',
+            },
+        ],
+        'react/jsx-uses-react': 'off',
+        'react/react-in-jsx-scope': 'off',
+    },
 };

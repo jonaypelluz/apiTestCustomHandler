@@ -29,7 +29,7 @@ lint: is-running
 
 ## Fix javascript formatting errors
 lint-fix: is-running
-	@docker exec -it ${CONTAINER} yarn lint-fix
+	@docker exec -it ${CONTAINER} yarn lint:fix
 
 ## Check if the container is running
 is-running:

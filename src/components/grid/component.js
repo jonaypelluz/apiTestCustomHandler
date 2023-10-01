@@ -9,13 +9,12 @@ const Grid = ({ items }) => {
                 xs: 8,
                 sm: 16,
                 md: 24,
-                lg: 32
-            }}>
+                lg: 32,
+            }}
+        >
             {items.map((item, idx) => (
                 <Col flex="1 0 20%" className="gutter-row" key={idx}>
-                    <ImageCard
-                        item={item}
-                    />
+                    <ImageCard item={item} />
                 </Col>
             ))}
         </Row>
@@ -23,7 +22,7 @@ const Grid = ({ items }) => {
 };
 
 Grid.propTypes = {
-    items: PropTypes.array.isRequired
+    items: PropTypes.array.isRequired,
 };
 
 export default Grid;

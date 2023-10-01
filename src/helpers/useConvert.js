@@ -1,26 +1,14 @@
-export const TYPES = {
-    CHARACTERS: 'CHARACTERS'
-};
-
-const CONVERSIONS = {
-    CHARACTERS: {
-        name: 'title',
-        species: 'desc'
-    }
-};
-
-const useConvert = (array, type) => {
-    let conversion = CONVERSIONS[type];
+const useConvert = (array, conversions) => {
     let converted = [];
 
-    array.map(s => {
+    array.map((s) => {
         let x = {};
-        Object.keys(s).forEach(k => {
+        Object.keys(s).forEach((k) => {
             x[k] = s[k];
         });
-        Object.keys(conversion).forEach(key => {
-            if (x.hasOwnProperty(key)) {
-                x[conversion[key]] = x[key];
+        Object.keys(conversions).forEach((key) => {
+            if (Object.prototype.hasOwnProperty.call(x, key)) {
+                x[conversions[key]] = x[key];
                 delete x[key];
             }
         });
