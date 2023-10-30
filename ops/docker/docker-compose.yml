@@ -17,7 +17,7 @@ services:
     networks:
       default:
         aliases:
-          - rick-and-morty.local
+          - api-custom-handler.local
 
 volumes: {
   node_modules
