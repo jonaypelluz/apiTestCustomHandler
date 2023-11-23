@@ -1,5 +1,8 @@
-**Rick And Morty API with Reactjs**
+**API Test Custom Handler with Reactjs**
 
-A bit of hooks, a bit of redux and a bit of everything with fake login and profile.
+Work In Progess!!!
 
-API: https://rickandmortyapi.com/
+A bit of everything with fake login and profile.
+
+APIs so far:  
+  - https://rickandmortyapi.com/
