@@ -1,0 +1,15 @@
+{
+    "appName": "Rick and Morty",
+    "apiType": "GraphQL",
+    "apiBaseUrl": "https://rickandmortyapi.com/",
+    "mainImage": "/images/RickAndMorty.png",
+    "sections": ["characters"],
+    "characters": {
+        "endpoint": "graphql",
+        "keys": ["results", "count"],
+        "pagination": "page",
+        "query": "query getCharacters($page: Int!) { characters(page: $page) { info { count } results { id name species image } } }",
+        "params": ["page|int"],
+        "conversions": ["name|title", "species|desc"]
+    }
+}

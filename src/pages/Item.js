@@ -1,4 +1,3 @@
-import './styles.scss';
 import { useParams } from 'react-router-dom';
 import { Layout } from 'antd';
 
@@ -9,7 +8,7 @@ const Character = () => {
     console.log(character);
 
     return (
-        <Content style={{ padding: '0 50px' }}>
+        <Content style={{ padding: '20px 50px' }}>
             <div className="content">Hello</div>
         </Content>
     );

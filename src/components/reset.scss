@@ -28,6 +28,7 @@ table {
 }
 
 input, textarea {
+    user-select: auto;
     -webkit-user-select: auto;
 }
 
