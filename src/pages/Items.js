@@ -3,68 +3,72 @@ import { useParams, useLocation } from 'react-router-dom';
 import { Layout } from 'antd';
 import { useApiContext } from 'store/ApiContext';
 import useGatherResponse from 'helpers/useGatherResponse';
+import useConvert from 'helpers/useConvert';
 import ApiService from 'services/ApiService';
-// import { Loader } from 'components/loader';
-// import { Grid } from 'components/grid';
-// import useConvert from 'helpers/useConvert';
-// import { Toast } from 'components/toast';
-// import { Pagination } from 'components/pagination';
+import Grid from 'components/Grid';
+import Pagination from 'components/Pagination';
+import Loader from 'components/Loader';
+import Toast from 'components/Toast';
 
 const { Content } = Layout;
 
-const Characters = () => {
-    const [items, setItems] = useState([]);
+const Items = () => {
+    const [error, setError] = useState();
+    const [items, setItems] = useState({ results: [], count: 0 });
     const apiContext = useApiContext();
     const api = ApiService();
     const params = useParams();
-    console.log(params);
+    const currentPage = 'page' in params ? params.page : 1;
     const location = useLocation();
-    const route = location.pathname.slice(1);
+    const route = location.pathname.split('/')[1];
+    const hasPagination = apiContext.config[route].pagination !== '';
+    const perPage = apiContext.config[route].perPage > 0 ? apiContext.config[route].perPage : 0;
 
     useEffect(() => {
         const fetchItems = async () => {
             try {
                 const response = await api.getItems(apiContext.config, route, params);
-                const results = useGatherResponse(apiContext.config[route].keys, response);
+                let results = useGatherResponse(apiContext.config[route].keys, response);
+                results.results = useConvert(results.results, apiContext.config[route].conversions);
                 setItems(results);
             } catch (error) {
-                console.error(error);
+                setError(error);
             }
         };
 
         fetchItems();
     }, []);
 
-    // if (loading) {
-    //     return <Loader />;
-    // }
+    if (api.loading) {
+        return <Loader />;
+    }
 
-    // if (error) {
-    //     return (
-    //         <Toast
-    //             toastList={[
-    //                 {
-    //                     type: 'error',
-    //                     description: error.message,
-    //                 },
-    //             ]}
-    //         />
-    //     );
-    // }
-
-    const characters = useConvert(items.results, apiContext.config[route].conversions);
+    if (error) {
+        return (
+            <Toast
+                toastList={[
+                    {
+                        type: 'error',
+                        description: error,
+                    },
+                ]}
+            />
+        );
+    }
 
     return (
         <Content style={{ padding: '20px 50px', backgroundColor: '#fff' }}>
-            <Grid items={characters} />
-            <Pagination
-                totalItems={items.count}
-                itemsPerPage={30}
-                currentPage={currentPage}
-                baseUrl="/characters/page"
-            />
+            <Grid items={items.results} />
+            {hasPagination && (
+                <Pagination
+                    totalItems={items.count}
+                    itemsPerPage={perPage}
+                    currentPage={currentPage}
+                    baseUrl={`/${route}/page`}
+                />
+            )}
         </Content>
     );
 };
 
-export default Characters;
+export default Items;

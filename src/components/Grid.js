@@ -1,4 +1,4 @@
-import { ImageCard } from 'components/card';
+import ImageCard from 'components/ImageCard';
 import { Col, Row } from 'antd';
 import PropTypes from 'prop-types';
 

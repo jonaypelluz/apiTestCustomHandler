@@ -1,4 +1,4 @@
-import './styles.scss';
+import './pagination.scss';
 import { Fragment } from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';

@@ -8,6 +8,7 @@
         "endpoint": "graphql",
         "keys": ["results", "count"],
         "pagination": "page",
+        "perPage": 20,
         "query": "query getCharacters($page: Int!) { characters(page: $page) { info { count } results { id name species image } } }",
         "params": ["page|int"],
         "conversions": ["name|title", "species|desc"]

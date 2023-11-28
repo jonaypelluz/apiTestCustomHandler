@@ -1,0 +1,16 @@
+{
+    "appName": "Rick and Morty",
+    "apiType": "Api",
+    "apiBaseUrl": "https://rickandmortyapi.com/api/",
+    "mainImage": "/images/RickAndMorty.png",
+    "sections": ["characters"],
+    "characters": {
+        "endpoint": "character",
+        "keys": ["results", "count"],
+        "pagination": "pages",
+        "perPage": 20,
+        "query": "",
+        "params": ["page|int"],
+        "conversions": ["name|title", "species|desc"]
+    }
+}

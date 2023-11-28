@@ -3,9 +3,9 @@ import { Layout } from 'antd';
 
 const { Content } = Layout;
 
-const Character = () => {
-    const { character } = useParams();
-    console.log(character);
+const Item = () => {
+    const { id } = useParams();
+    console.log(id);
 
     return (
         <Content style={{ padding: '20px 50px' }}>
@@ -14,4 +14,4 @@ const Character = () => {
     );
 };
 
-export default Character;
+export default Item;

@@ -1,4 +1,4 @@
-import './styles.scss';
+import './toast.scss';
 import { useState, useEffect, createElement } from 'react';
 import PropTypes from 'prop-types';
 import {

@@ -14,7 +14,11 @@ const Home = () => {
         const fetchData = async () => {
             try {
                 const configFolder = '/config';
-                const files = ['default.json'];
+                const files = [
+                    'rickAndMortyApi.json',
+                    'rickAndMortyGraphQL.json',
+                    'StarWarsApi.json',
+                ];
                 const dataPromises = files.map(async (fileName) => {
                     const fileResponse = await fetch(`${configFolder}/${fileName}`);
                     const fileContent = await fileResponse.json();
