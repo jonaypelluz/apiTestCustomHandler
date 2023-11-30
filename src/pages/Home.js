@@ -42,12 +42,12 @@ const Home = () => {
     };
 
     return (
-        <Content style={{ padding: '0 50px' }}>
+        <Layout style={{ padding: '0 50px' }}>
             <Title style={{ textAlign: 'center', marginBottom: '100px', marginTop: '100px' }}>
                 Choose an api to browse the content
             </Title>
-            <section style={{ padding: '20px', backgroundColor: '#fff' }}>
-                <Space direction="vertical" size={16}>
+            <Content style={{ padding: '20px', backgroundColor: '#fff' }}>
+                <Space direction="horizontal" size={16}>
                     {fileData.map((file, index) => (
                         <Card
                             hoverable
@@ -60,8 +60,8 @@ const Home = () => {
                         </Card>
                     ))}
                 </Space>
-            </section>
-        </Content>
+            </Content>
+        </Layout>
     );
 };
 

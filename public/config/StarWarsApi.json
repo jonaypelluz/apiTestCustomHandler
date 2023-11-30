@@ -1,16 +1,16 @@
 {
-    "appName": "Rick and Morty",
+    "appName": "Star Wars",
     "apiType": "Api",
-    "apiBaseUrl": "https://rickandmortyapi.com/api/",
-    "mainImage": "/images/RickAndMorty.png",
-    "sections": ["characters"],
-    "characters": {
-        "endpoint": "character",
+    "apiBaseUrl": "https://swapi.dev/api/",
+    "mainImage": "/images/StarWars.jpg",
+    "sections": ["people"],
+    "people": {
+        "endpoint": "people",
         "keys": ["results", "count"],
-        "pagination": "pages",
-        "perPage": 20,
+        "pagination": "page",
+        "perPage": 10,
         "query": "",
         "params": ["page|int"],
-        "conversions": ["name|title", "species|desc"]
+        "conversions": ["name|title", "gender|desc", "url|id|\\d+"]
     }
 }

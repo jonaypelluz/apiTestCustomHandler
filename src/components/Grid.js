@@ -1,23 +1,20 @@
 import ImageCard from 'components/ImageCard';
-import { Col, Row } from 'antd';
+import { Layout, Col, Row } from 'antd';
 import PropTypes from 'prop-types';
+
+const { Content } = Layout;
 
 const Grid = ({ items }) => {
     return (
-        <Row
-            gutter={{
-                xs: 8,
-                sm: 16,
-                md: 24,
-                lg: 32,
-            }}
-        >
-            {items.map((item, idx) => (
-                <Col flex="1 0 20%" className="gutter-row" key={idx}>
-                    <ImageCard item={item} />
-                </Col>
-            ))}
-        </Row>
+        <Content>
+            <Row>
+                {items.map((item, idx) => (
+                    <Col style={{ margin: '10px' }} key={idx}>
+                        <ImageCard item={item} />
+                    </Col>
+                ))}
+            </Row>
+        </Content>
     );
 };
 

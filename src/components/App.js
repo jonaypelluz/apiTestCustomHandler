@@ -20,6 +20,7 @@ const getActiveModules = (sections) => {
         return [
             {
                 path: basePath,
+                exact: true,
                 Component: lazy(() => import(`pages/Items`)),
             },
             {

@@ -20,6 +20,13 @@ const makeRestRequest = async (url) => {
         );
 };
 
+const buildQueryString = (url, variables) => {
+    const queryString = Object.keys(variables)
+        .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(variables[key])}`)
+        .join('&');
+    return `${url}?${queryString}`;
+};
+
 const createsVariablesObject = (config, params) => {
     const structure = config.params;
     let body = [];
@@ -33,7 +40,7 @@ const createsVariablesObject = (config, params) => {
     Object.keys(body).forEach((key) => {
         for (let param in params) {
             if (param === key) {
-                result[key] = params[param];
+                result[key] = body[key] === 'int' ? parseInt(params[param]) : params[param];
             }
         }
     });
@@ -66,6 +73,7 @@ const ApiService = () => {
             if (config.apiType === 'GraphQL') {
                 response = await makeGraphQLRequest(url, apiConfig.query, variables);
             } else {
+                url = Object.keys(variables).length > 0 ? buildQueryString(url, variables) : url;
                 response = await makeRestRequest(url);
             }
 
