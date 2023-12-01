@@ -1,5 +1,5 @@
 {
-    "name": "api-custom-handler",
+    "name": "api-test-custom-handler",
     "version": "0.1.0",
     "private": true,
     "dependencies": {

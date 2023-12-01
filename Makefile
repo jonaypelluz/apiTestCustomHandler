@@ -1,11 +1,16 @@
-PROJECT_NAME = api-custom-handler
+PROJECT_NAME = api-test-custom-handler
 CONTAINER = $$(docker ps | grep ${PROJECT_NAME} | awk '{print $$1}')
 DOCKER_COMPOSE := --env-file .env -p ${PROJECT_NAME} -f ops/docker/docker-compose.yml
 
 ## Builds the container image
-build: 
-	sh ops/scripts/copy-env.sh
+build: copy-env hosts
 	docker-compose ${DOCKER_COMPOSE} up -d --build
+
+copy-env:
+	sh ops/scripts/copy-env.sh
+
+hosts:
+	sh ops/scripts/hosts.sh
 
 ## Starts the container
 start:

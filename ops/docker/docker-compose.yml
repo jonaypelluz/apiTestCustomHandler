@@ -17,7 +17,7 @@ services:
     networks:
       default:
         aliases:
-          - api-custom-handler.local
+          - api-test-custom-handler.local
 
 volumes: {
   node_modules

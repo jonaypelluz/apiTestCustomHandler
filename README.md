@@ -2,7 +2,6 @@
 
 Work In Progess!!!
 
-
 ## APIs so far:
 
 -   https://rickandmortyapi.com/
@@ -10,26 +9,25 @@ Work In Progess!!!
 
 ## TODO:
 
-- log system
-- cache system
-- events / subscribers
-- lazy loading
-- ...
+-   cache system
+-   events / subscribers
+-   lazy loading
+-   ...
 
 ## Config files
 
-- **appName**: Name of the API, this will shoe in the Home menu.
-- **apiType**: This at the moment can be GraphQL and Rest API.
-- **apiBaseUrl**: The base url for the Api
-- **mainImage**:
-- **sections**:
-    - **endpoint**:
-    - **keys**:
-    - **pagination**:
-    - **perPage**:
-    - **query**:
-    - **params**:
-    - **conversions**:
+-   **appName**: Name of the API, this will shoe in the Home menu.
+-   **apiType**: This at the moment can be GraphQL and Rest API.
+-   **apiBaseUrl**: The base url for the Api
+-   **mainImage**:
+-   **sections**:
+    -   **endpoint**:
+    -   **keys**:
+    -   **pagination**:
+    -   **perPage**:
+    -   **query**:
+    -   **params**:
+    -   **conversions**:
 
 ```
 {
@@ -49,4 +47,3 @@ Work In Progess!!!
     }
 }
 ```
-
