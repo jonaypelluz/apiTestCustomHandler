@@ -3,7 +3,7 @@
     "apiType": "Api",
     "apiBaseUrl": "https://rickandmortyapi.com/api/",
     "mainImage": "/images/RickAndMorty.png",
-    "sections": ["characters"],
+    "sections": ["characters", "locations"],
     "characters": {
         "endpoint": "character",
         "keys": ["results", "count"],
@@ -12,5 +12,14 @@
         "query": "",
         "params": ["page|int"],
         "conversions": ["name|title", "species|desc"]
+    },
+    "locations": {
+        "endpoint": "location",
+        "keys": ["results", "count"],
+        "pagination": "page",
+        "perPage": 20,
+        "query": "",
+        "params": ["page|int"],
+        "conversions": ["name|title", "type|desc"]
     }
 }

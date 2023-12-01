@@ -15,8 +15,8 @@ const Home = () => {
             try {
                 const configFolder = '/config';
                 const files = [
-                    'rickAndMortyApi.json',
-                    'rickAndMortyGraphQL.json',
+                    'RickAndMortyApi.json',
+                    'RickAndMortyGraphQL.json',
                     'StarWarsApi.json',
                 ];
                 const dataPromises = files.map(async (fileName) => {

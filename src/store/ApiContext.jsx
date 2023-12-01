@@ -20,14 +20,14 @@ const ApiProviderImpl = ({ children }) => {
 
     useEffect(() => {
         if (appName !== '') {
-            Logger.log('Setting appName...', appName);
+            Logger.log('Setting context appName...', appName);
             StorageService.setItem(StorageService.API_SELECTED, appName);
         }
     }, [appName]);
 
     useEffect(() => {
         if (config !== '') {
-            Logger.log('Setting config...', config);
+            Logger.log('Setting context config...', config);
             StorageService.setItem(StorageService.CONFIG_SELECTED, config);
         }
     }, [config]);
