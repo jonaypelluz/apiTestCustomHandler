@@ -4,9 +4,16 @@ const NO_OP = (message, ...optionalParams) => {}; // eslint-disable-line
 
 const config = appConfig();
 
+const COLOR_CYAN = 36;
+const COLOR_BLUE = 34;
+
 class ConsoleLogger {
     constructor(options = {}) {
         const { level } = options;
+
+        const bindConsoleWithColor = (consoleMethod, color) => {
+            return consoleMethod.bind(console, `\x1b[${color}m%s\x1b[0m`);
+        };
 
         this.error = console.error.bind(console);
 
@@ -25,12 +32,8 @@ class ConsoleLogger {
             return;
         }
 
-        this.info = (message, ...optionalParams) => {
-            console.log(`\x1b[36m${message}\x1b[0m`, ...optionalParams); // eslint-disable-line
-        };
-        this.log = (message, ...optionalParams) => {
-            console.log(`\x1b[34m${message}\x1b[0m`, ...optionalParams); // eslint-disable-line
-        };
+        this.info = bindConsoleWithColor(console.log, COLOR_CYAN);
+        this.log = bindConsoleWithColor(console.log, COLOR_BLUE);
     }
 }
 
