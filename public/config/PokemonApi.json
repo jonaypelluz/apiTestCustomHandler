@@ -1,0 +1,16 @@
+{
+    "appName": "Pokemon",
+    "apiType": "Api",
+    "apiBaseUrl": "https://pokeapi.co/api/v2/",
+    "mainImage": "/images/pokemon.png",
+    "sections": ["pokemons"],
+    "pokemons": {
+        "endpoint": "pokemon",
+        "keys": ["results", "count"],
+        "pagination": "offset",
+        "perPage": 20,
+        "query": "",
+        "params": ["offset|int"],
+        "conversions": ["name|title", "url|id|\/(\\d+)\/"]
+    }
+}

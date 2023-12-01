@@ -18,6 +18,7 @@ const Home = () => {
                     'RickAndMortyApi.json',
                     'RickAndMortyGraphQL.json',
                     'StarWarsApi.json',
+                    'PokemonApi.json',
                 ];
                 const dataPromises = files.map(async (fileName) => {
                     const fileResponse = await fetch(`${configFolder}/${fileName}`);
@@ -53,6 +54,11 @@ const Home = () => {
                             hoverable
                             style={{ width: 240 }}
                             key={index}
+                            className={
+                                apiContext.appName === file.content.appName
+                                    ? 'home-card selected-card'
+                                    : 'home-card'
+                            }
                             onClick={() => handleClick(file.content)}
                             cover={<img alt={file.content.appName} src={file.content.mainImage} />}
                         >

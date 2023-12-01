@@ -1,5 +1,5 @@
 {
-    "appName": "Rick and Morty",
+    "appName": "Rick and Morty GQL",
     "apiType": "GraphQL",
     "apiBaseUrl": "https://rickandmortyapi.com/",
     "mainImage": "/images/RickAndMorty.png",
