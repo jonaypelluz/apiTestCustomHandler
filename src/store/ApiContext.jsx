@@ -1,12 +1,36 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
+import StorageService from 'store/StorageService';
 import PropTypes from 'prop-types';
+import Logger from 'services/Logger';
 
 const ApiContext = createContext();
 
 const ApiProviderImpl = ({ children }) => {
     const [subscribers, setSubscribers] = useState([]);
-    const [api, setApi] = useState('');
+    const [appName, setAppName] = useState('');
     const [config, setConfig] = useState('');
+
+    useEffect(() => {
+        const storedApi = StorageService.getItem(StorageService.API_SELECTED);
+        const storedConfig = StorageService.getItem(StorageService.CONFIG_SELECTED);
+
+        setAppName(storedApi !== null ? storedApi : '');
+        setConfig(storedConfig !== null ? storedConfig : '');
+    }, []);
+
+    useEffect(() => {
+        if (appName !== '') {
+            Logger.log('Setting appName...', appName);
+            StorageService.setItem(StorageService.API_SELECTED, appName);
+        }
+    }, [appName]);
+
+    useEffect(() => {
+        if (config !== '') {
+            Logger.log('Setting config...', config);
+            StorageService.setItem(StorageService.CONFIG_SELECTED, config);
+        }
+    }, [config]);
 
     const subscribe = (eventName, callback) => {
         const id = Date.now().toString();
@@ -26,8 +50,8 @@ const ApiProviderImpl = ({ children }) => {
     };
 
     const value = {
-        api,
-        setApi,
+        appName,
+        setAppName,
         config,
         setConfig,
         subscribe,
@@ -35,10 +59,6 @@ const ApiProviderImpl = ({ children }) => {
     };
 
     return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;
-};
-
-ApiProviderImpl.propTypes = {
-    children: PropTypes.node.isRequired,
 };
 
 export const ApiProvider = ({ children }) => {
@@ -51,6 +71,10 @@ export const useApiContext = () => {
         throw new Error('useApiContext must be used within an ApiProvider');
     }
     return context;
+};
+
+ApiProviderImpl.propTypes = {
+    children: PropTypes.node.isRequired,
 };
 
 ApiProvider.propTypes = {

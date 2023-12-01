@@ -3,7 +3,7 @@ import { lazy, useState, useEffect, useRef } from 'react';
 import Routes from './Routes';
 import Header from 'components/Header';
 import { useApiContext } from 'store/ApiContext';
-import logger from 'services/Logger';
+import Logger from 'services/Logger';
 
 const transformSection = (string, singular = false) => {
     const firstLetter = string.charAt(0);
@@ -48,7 +48,7 @@ const App = () => {
             try {
                 const apiConfig = apiContext.config;
                 const modules = getActiveModules(apiConfig.sections);
-                logger.log('Imported sections', modules);
+                Logger.log('Imported sections', modules);
                 setImportedModules(modules);
             } catch (err) {
                 console.error(err.toString());

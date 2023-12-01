@@ -37,7 +37,7 @@ const Home = () => {
     }, []);
 
     const handleClick = (content) => {
-        apiContext.setApi(content.apiUrl);
+        apiContext.setAppName(content.appName);
         apiContext.setConfig(content);
     };
 

@@ -37,6 +37,6 @@ class ConsoleLogger {
     }
 }
 
-const logger = new ConsoleLogger({ level: config.LOG_LEVEL ?? 'error' });
+const Logger = new ConsoleLogger({ level: config.LOG_LEVEL ?? 'error' });
 
-export default logger;
+export default Logger;
