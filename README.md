@@ -10,6 +10,7 @@ Work In Progess!!!
 
 ## TODO:
 
+-   Change Context API for Redux and Saga
 -   cache system
 -   events / subscribers
 -   lazy loading
