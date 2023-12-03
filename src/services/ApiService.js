@@ -52,6 +52,10 @@ const createsVariablesObject = (config, params) => {
     return result;
 };
 
+// const handleResponse = () => {
+
+// };
+
 const ApiService = () => {
     const [loading, setLoading] = useState(false);
 

@@ -1,8 +1,8 @@
 import { Layout, Menu } from 'antd';
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { HomeOutlined, RightSquareOutlined } from '@ant-design/icons';
-import { useApiContext } from 'store/ApiContext';
+import { useSelector } from 'react-redux';
 
 const { Header } = Layout;
 
@@ -15,29 +15,23 @@ const Head = () => {
         },
     ];
     const [items, setItems] = useState(initialItems);
-    const apiContext = useApiContext();
-    const isInitialRender = useRef(true);
+    const { sections, appName } = useSelector((state) => state.apiConfig);
 
     useEffect(() => {
-        if (isInitialRender.current) {
-            isInitialRender.current = false;
-        } else {
-            const sections = apiContext.config.sections;
-            let newItems = [];
-            if (sections) {
-                newItems = sections.map((section) => ({
-                    label: (
-                        <Link to={`/${section}`}>
-                            {section.charAt(0).toUpperCase() + section.slice(1)}
-                        </Link>
-                    ),
-                    icon: <RightSquareOutlined />,
-                    key: section.toLowerCase(),
-                }));
-                setItems([...initialItems, ...newItems]);
-            }
+        let newItems = [];
+        if (sections) {
+            newItems = sections.map((section) => ({
+                label: (
+                    <Link to={`/${section}`}>
+                        {section.charAt(0).toUpperCase() + section.slice(1)}
+                    </Link>
+                ),
+                icon: <RightSquareOutlined />,
+                key: section.toLowerCase(),
+            }));
+            setItems([...initialItems, ...newItems]);
         }
-    }, [apiContext]);
+    }, [appName]);
 
     return (
         <Header style={{ backgroundColor: '#000', height: '78px', paddingInline: '20px' }}>

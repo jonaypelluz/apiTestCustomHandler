@@ -1,3 +1,5 @@
+import Logger from 'services/Logger';
+
 const iterate = (keyToFind, obj, maxDepth = 2, depth = 0) => {
     for (const key in obj) {
         if (
@@ -24,6 +26,8 @@ const useGatherResponse = (keys, response) => {
     keys.forEach((key) => {
         foundProperties[key] = iterate(key, response);
     });
+
+    Logger.log('Foun properties', foundProperties);
 
     return foundProperties;
 };

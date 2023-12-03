@@ -1,7 +1,8 @@
 import Logger from 'services/Logger';
 
 const StorageService = {
-    API_SELECTED: 'API_SELECTED',
+    APP_NAME_SELECTED: 'APP_NAME_SELECTED',
+    SECTIONS_SELECTED: 'SECTIONS_SELECTED',
     CONFIG_SELECTED: 'CONFIG_SELECTED',
 
     setItem(key, value) {

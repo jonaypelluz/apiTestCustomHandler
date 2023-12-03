@@ -1,21 +1,22 @@
-import React from 'react';
+// import React from 'react';
 import App from './components/App';
 import reportWebVitals from './reportWebVitals';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { ApiProvider } from './store/ApiContext';
+import { Provider } from 'react-redux';
 import { createRoot } from 'react-dom/client';
+import store from 'store/Store';
 
 const container = document.getElementById('app');
 const root = createRoot(container);
 
 root.render(
-    <React.StrictMode>
+    // <React.StrictMode>
+    <Provider store={store}>
         <Router>
-            <ApiProvider>
-                <App />
-            </ApiProvider>
+            <App />
         </Router>
-    </React.StrictMode>,
+    </Provider>,
+    // </React.StrictMode>,
 );
 
 reportWebVitals();

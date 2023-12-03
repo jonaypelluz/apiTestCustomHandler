@@ -1,5 +1,6 @@
 const appConfig = () => {
     switch (process.env.REACT_APP_APP_ENV) {
+        case 'production':
         case 'development':
             return {
                 LOG_LEVEL: 'info',

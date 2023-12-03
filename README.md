@@ -6,14 +6,15 @@ Work In Progess!!!
 
 -   https://rickandmortyapi.com/
 -   https://swapi.dev/
--   https://pokeapi.co/ WIP
+-   https://pokeapi.co/
+-   https://api.potterdb.com/
 
 ## TODO:
 
--   Change Context API for Redux and Saga
+-   Add saga middleware
 -   cache system
--   events / subscribers
 -   lazy loading
+-   ChatGPT AI Image generation
 -   ...
 
 ## Config files

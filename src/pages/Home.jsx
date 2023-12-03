@@ -1,21 +1,24 @@
-import { Layout, Card, Space, Typography } from 'antd';
+import { Layout, Card, Col, Row, Typography } from 'antd';
 import { useEffect, useState } from 'react';
-import { useApiContext } from 'store/ApiContext';
+import { useDispatch, useSelector } from 'react-redux';
+import { setConfig } from 'reducers/ApiReducer';
 
 const { Title } = Typography;
 const { Meta } = Card;
 const { Content } = Layout;
 
 const Home = () => {
+    const dispatch = useDispatch();
+    const { appName } = useSelector((state) => state.apiConfig);
     const [fileData, setFileData] = useState([]);
-    const apiContext = useApiContext();
 
     useEffect(() => {
         const fetchData = async () => {
             try {
                 const configFolder = '/config';
                 const files = [
-                    'RickAndMortyApi.json',
+                    'HarryPotterApi.json',
+                    'PokemonApi.json',
                     'RickAndMortyGraphQL.json',
                     'StarWarsApi.json',
                     'PokemonApi.json',
@@ -38,8 +41,7 @@ const Home = () => {
     }, []);
 
     const handleClick = (content) => {
-        apiContext.setAppName(content.appName);
-        apiContext.setConfig(content);
+        dispatch(setConfig(content));
     };
 
     return (
@@ -48,24 +50,30 @@ const Home = () => {
                 Choose an api to browse the content
             </Title>
             <Content style={{ padding: '20px', backgroundColor: '#fff' }}>
-                <Space direction="horizontal" size={16}>
-                    {fileData.map((file, index) => (
-                        <Card
-                            hoverable
-                            style={{ width: 240 }}
-                            key={index}
-                            className={
-                                apiContext.appName === file.content.appName
-                                    ? 'home-card selected-card'
-                                    : 'home-card'
-                            }
-                            onClick={() => handleClick(file.content)}
-                            cover={<img alt={file.content.appName} src={file.content.mainImage} />}
-                        >
-                            <Meta title={file.content.appName} description={file.content.apiType} />
-                        </Card>
+                <Row>
+                    {fileData.map((file, idx) => (
+                        <Col style={{ margin: '10px' }} key={idx}>
+                            <Card
+                                hoverable
+                                style={{ width: 240 }}
+                                className={
+                                    appName === file.content.appName
+                                        ? 'home-card selected-card'
+                                        : 'home-card'
+                                }
+                                onClick={() => handleClick(file.content)}
+                                cover={
+                                    <img alt={file.content.appName} src={file.content.mainImage} />
+                                }
+                            >
+                                <Meta
+                                    title={file.content.appName}
+                                    description={file.content.apiType}
+                                />
+                            </Card>
+                        </Col>
                     ))}
-                </Space>
+                </Row>
             </Content>
         </Layout>
     );

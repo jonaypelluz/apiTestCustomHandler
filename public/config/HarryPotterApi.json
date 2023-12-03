@@ -1,0 +1,16 @@
+{
+    "appName": "Harry Potter",
+    "apiType": "Api",
+    "apiBaseUrl": "https://api.potterdb.com/v1/",
+    "mainImage": "/images/harryPotter.png",
+    "sections": ["characters"],
+    "characters": {
+        "endpoint": "characters",
+        "keys": [],
+        "pagination": "page[number]",
+        "perPage": 20,
+        "query": "",
+        "params": ["page[number]|int"],
+        "conversions": ["name|title", "species|string"]
+    }
+}
