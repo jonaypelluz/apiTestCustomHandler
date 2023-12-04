@@ -1,10 +1,12 @@
+import iterateObject from 'helpers/iterateObject';
+
 const extractMatchedString = (inputString, regexPattern) => {
     const regExp = new RegExp(regexPattern);
     const matches = inputString.match(regExp);
     return matches.length > 0 ? matches[0] : inputString;
 };
 
-const useConvert = (array, conversions) => {
+const useConvert = (array, conversions, path) => {
     let regex = [];
     let mutations = [];
     let converted = [];
@@ -20,22 +22,25 @@ const useConvert = (array, conversions) => {
 
     array.map((s) => {
         let x = {};
+
         Object.keys(s).forEach((k) => {
             x[k] = s[k];
         });
+
         Object.keys(mutations).forEach((key) => {
-            if (Object.prototype.hasOwnProperty.call(x, key)) {
-                x[mutations[key]] = x[key];
-                delete x[key];
-            }
+            x[mutations[key]] = iterateObject(key, x);
         });
+
         Object.keys(regex).forEach((key) => {
-            const parts = regex[key].split('|');
-            if (Object.prototype.hasOwnProperty.call(x, key)) {
-                x[parts[0]] = extractMatchedString(x[key], parts[1]);
-                delete x[key];
+            let foundKey = iterateObject(key, x);
+            if (foundKey) {
+                const parts = regex[key].split('|');
+                x[parts[0]] = extractMatchedString(foundKey, parts[1]);
             }
         });
+
+        x.url = `/${path}/${x.id}`;
+
         converted.push(x);
     });
 

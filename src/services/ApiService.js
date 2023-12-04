@@ -1,5 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
+import gatherApiResponseItems from 'helpers/gatherApiResponseItems';
+import normalizeItems from 'helpers/normalizeItems';
+import stringToSingular from 'helpers/stringToSingular';
+import Logger from 'services/Logger';
 
 const makeGraphQLRequest = async (url, query, variables) => {
     return await axios
@@ -27,34 +31,36 @@ const buildQueryString = (url, variables) => {
     return `${url}?${queryString}`;
 };
 
-const createsVariablesObject = (config, params) => {
-    const structure = config.params;
-    let body = [];
-    let result = {};
+/**
+ * TODO:
+ * I am trying to find a more generic way to deal with this
+ * */
+const createsPaginationObject = (config, currentPage) => {
+    let body = {};
 
-    structure.forEach((item) => {
-        const parts = item.split('|');
-        body[parts[0]] = parts[1];
-    });
-
-    Object.keys(body).forEach((key) => {
-        for (let param in params) {
-            if (param === key) {
-                result[key] = body[key] === 'int' ? parseInt(params[param]) : params[param];
-            }
-        }
-    });
-
-    if (config.pagination && !Object.keys(result).includes(config.pagination)) {
-        result[config.pagination] = 1;
+    if (config.pagination.includes('|')) {
+        // offset / limit
+        const parts = config.pagination.split('|');
+        parts.forEach((part) => {
+            body[part] = part === 'limit' ? config.perPage : config.perPage * (currentPage - 1);
+        });
+    } else {
+        // page
+        body[config.pagination] = currentPage;
     }
 
-    return result;
+    return body;
 };
 
-// const handleResponse = () => {
-
-// };
+const handleResponse = (response, apiConfig) => {
+    let results = gatherApiResponseItems(apiConfig.keys, response);
+    results.results = normalizeItems(
+        results.results,
+        apiConfig.conversions,
+        stringToSingular(apiConfig.endpoint),
+    );
+    return results;
+};
 
 const ApiService = () => {
     const [loading, setLoading] = useState(false);
@@ -63,27 +69,31 @@ const ApiService = () => {
         setLoading(status);
     };
 
-    const getItems = async (config, section, params) => {
+    const getItems = async (config, section, currentPage) => {
+        setLoadingState(true);
         let url = config.apiBaseUrl;
 
         try {
-            setLoadingState(true);
             const apiConfig = config[section];
-            const variables = createsVariablesObject(apiConfig, params);
+            const paginationObj = createsPaginationObject(apiConfig, currentPage);
             url = url + apiConfig.endpoint;
 
             let response;
 
             if (config.apiType === 'GraphQL') {
-                response = await makeGraphQLRequest(url, apiConfig.query, variables);
+                response = await makeGraphQLRequest(url, apiConfig.query, paginationObj);
             } else {
-                url = Object.keys(variables).length > 0 ? buildQueryString(url, variables) : url;
+                url =
+                    Object.keys(paginationObj).length > 0
+                        ? buildQueryString(url, paginationObj)
+                        : url;
                 response = await makeRestRequest(url);
             }
+            Logger.log(`Api response for ${section}`, response);
 
             setLoadingState(false);
 
-            return response;
+            return handleResponse(response, apiConfig);
         } catch (error) {
             setLoadingState(false);
             throw error;

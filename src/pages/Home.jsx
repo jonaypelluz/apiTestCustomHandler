@@ -21,7 +21,7 @@ const Home = () => {
                     'PokemonApi.json',
                     'RickAndMortyGraphQL.json',
                     'StarWarsApi.json',
-                    'PokemonApi.json',
+                    'RickAndMortyApi.json',
                 ];
                 const dataPromises = files.map(async (fileName) => {
                     const fileResponse = await fetch(`${configFolder}/${fileName}`);

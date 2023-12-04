@@ -7,10 +7,9 @@
     "pokemons": {
         "endpoint": "pokemon",
         "keys": ["results", "count"],
-        "pagination": "next|offset=(\\d+)",
+        "pagination": "offset|limit",
         "perPage": 20,
         "query": "",
-        "params": ["offset|int", "limit|int"],
         "conversions": ["name|title", "url|id|/(\\d+)/"]
     }
 }

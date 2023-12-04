@@ -10,7 +10,6 @@
         "pagination": "page",
         "perPage": 20,
         "query": "query getCharacters($page: Int!) { characters(page: $page) { info { count } results { id name species image } } }",
-        "params": ["page|int"],
         "conversions": ["name|title", "species|desc"]
     },
     "locations": {
@@ -19,7 +18,6 @@
         "pagination": "page",
         "perPage": 20,
         "query": "query getLocations($page: Int!) { locations(page: $page) { info { count } results { id name type } } }",
-        "params": ["page|int"],
         "conversions": ["name|title", "type|desc"]
     }
 }

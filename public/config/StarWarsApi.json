@@ -10,7 +10,6 @@
         "pagination": "page",
         "perPage": 10,
         "query": "",
-        "params": ["page|int"],
         "conversions": ["name|title", "gender|desc", "url|id|\\d+"]
     }
 }

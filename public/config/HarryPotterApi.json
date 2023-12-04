@@ -10,7 +10,6 @@
         "pagination": "page[number]",
         "perPage": 20,
         "query": "",
-        "params": ["page[number]|int"],
-        "conversions": ["name|title", "species|string"]
+        "conversions": ["name|title", "species|desc", "image|image"]
     }
 }

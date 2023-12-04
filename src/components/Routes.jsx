@@ -5,16 +5,7 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Logger from 'services/Logger';
-
-const transformSection = (string, singular = false) => {
-    const firstLetter = string.charAt(0);
-
-    if (singular && string.endsWith('s')) {
-        return firstLetter + string.slice(0, -1).slice(1);
-    } else {
-        return firstLetter + string.slice(1);
-    }
-};
+import stringToUppercase from 'helpers/stringToUppercase';
 
 const getActiveModules = (sections) => {
     const modules = sections.flatMap((section) => {
@@ -30,7 +21,7 @@ const getActiveModules = (sections) => {
                 Component: lazy(() => import(`pages/Items`)),
             },
             {
-                path: `${transformSection(basePath, true)}/:id}`,
+                path: `${stringToUppercase(basePath, true)}/:id}`,
                 Component: lazy(() => import(`pages/Item`)),
             },
         ];

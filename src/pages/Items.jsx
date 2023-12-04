@@ -2,8 +2,6 @@ import { useEffect, useState } from 'react';
 import { useParams, useLocation } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import { Layout } from 'antd';
-import useGatherResponse from 'helpers/useGatherResponse';
-import useConvert from 'helpers/useConvert';
 import ApiService from 'services/ApiService';
 import Grid from 'components/Grid';
 import Pagination from 'components/Pagination';
@@ -27,7 +25,7 @@ const Items = () => {
     const route = location.pathname.split('/')[1];
     const section = selectedSection(config, route);
 
-    Logger.log('Selected section: ', section);
+    Logger.log(`Selected section "${route}": `, section);
 
     const hasPagination = section.pagination;
     const perPage = section.perPage;
@@ -35,10 +33,8 @@ const Items = () => {
     useEffect(() => {
         const fetchItems = async () => {
             try {
-                const response = await api.getItems(config, route, params);
-                Logger.log(`Api response for ${route}`, response);
-                let results = useGatherResponse(section.keys, response);
-                results.results = useConvert(results.results, section.conversions);
+                const results = await api.getItems(config, route, currentPage);
+                Logger.log('Final items: ', results);
                 setItems(results);
             } catch (error) {
                 setError(error);

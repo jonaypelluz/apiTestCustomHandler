@@ -6,7 +6,6 @@ import Logger from 'services/Logger';
 const ApiContext = createContext();
 
 const ApiProviderImpl = ({ children }) => {
-    const [subscribers, setSubscribers] = useState([]);
     const [appName, setAppName] = useState('');
     const [config, setConfig] = useState('');
 
@@ -32,30 +31,11 @@ const ApiProviderImpl = ({ children }) => {
         }
     }, [config]);
 
-    const subscribe = (eventName, callback) => {
-        const id = Date.now().toString();
-        setSubscribers((prevSubscribers) => [...prevSubscribers, { id, eventName, callback }]);
-        return () => {
-            setSubscribers((prevSubscribers) =>
-                prevSubscribers.filter((subscriber) => subscriber.id !== id),
-            );
-        };
-    };
-
-    const emit = (eventName, ...args) => {
-        const matchingSubscribers = subscribers.filter(
-            (subscriber) => subscriber.eventName === eventName,
-        );
-        matchingSubscribers.forEach((subscriber) => subscriber.callback(...args));
-    };
-
     const value = {
         appName,
         setAppName,
         config,
         setConfig,
-        subscribe,
-        emit,
     };
 
     return <ApiContext.Provider value={value}>{children}</ApiContext.Provider>;

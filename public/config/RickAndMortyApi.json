@@ -10,7 +10,6 @@
         "pagination": "page",
         "perPage": 20,
         "query": "",
-        "params": ["page|int"],
         "conversions": ["name|title", "species|desc"]
     },
     "locations": {
@@ -19,7 +18,6 @@
         "pagination": "page",
         "perPage": 20,
         "query": "",
-        "params": ["page|int"],
         "conversions": ["name|title", "type|desc"]
     }
 }
