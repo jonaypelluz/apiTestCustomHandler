@@ -25,7 +25,7 @@ const ItemInfoCard = ({ item, itemIncludedKeys }) => {
             <div style={{ display: 'flex' }}>
                 <div style={{ flex: 1, paddingRight: '16px' }}>
                     <img
-                        src={item && item.image ? item.image : '/images/default.jpeg'}
+                        src={item && item.image ? item.image : '/images/default.png'}
                         alt="Card"
                         style={{ width: '100%', height: 'auto' }}
                     />

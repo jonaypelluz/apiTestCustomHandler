@@ -37,7 +37,7 @@ const Items = () => {
         const fetchItems = async () => {
             try {
                 const results = await api.getItems(config, route, currentPage);
-                Logger.log('Final items: ', results);
+                Logger.log('Final items:', results);
                 setItems(results);
             } catch (error) {
                 setError(error);

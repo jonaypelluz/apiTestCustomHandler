@@ -28,7 +28,7 @@ const Item = () => {
         const fetchItem = async () => {
             try {
                 const result = await api.getItem(config, sectionContext.selectedSection, id);
-                Logger.log('Final item: ', result);
+                Logger.log('Final item:', result);
                 setItem(result);
             } catch (error) {
                 setError(error);

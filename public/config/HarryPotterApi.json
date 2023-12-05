@@ -2,8 +2,8 @@
     "appName": "Harry Potter",
     "apiType": "Api",
     "apiBaseUrl": "https://api.potterdb.com/v1/",
-    "mainImage": "/images/harryPotter.png",
-    "sections": ["characters"],
+    "mainImage": "/images/HarryPotter.png",
+    "sections": ["characters", "potions"],
     "characters": {
         "endpoint": "characters",
         "keys": [],
@@ -11,5 +11,13 @@
         "perPage": 20,
         "itemIncludedKeys": ["type", "species", "attributes"],
         "conversions": ["name|title", "species|desc", "image|image"]
+    },
+    "potions": {
+        "endpoint": "potions",
+        "keys": [],
+        "pagination": "page[number]",
+        "perPage": 20,
+        "itemIncludedKeys": ["name", "type", "attributes"],
+        "conversions": ["name|title", "type|desc", "image|image"]
     }
 }

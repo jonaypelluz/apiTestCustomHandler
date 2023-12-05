@@ -17,7 +17,7 @@ const StorageService = {
     },
 
     getItem(key) {
-        Logger.info('Getting from localStorage the key: ', key);
+        Logger.info('Getting from localStorage the key:', key);
         try {
             const serializedValue = localStorage.getItem(key);
             const parsedValue = serializedValue ? JSON.parse(serializedValue) : null;
@@ -30,7 +30,7 @@ const StorageService = {
     },
 
     removeItem(key) {
-        Logger.info('Removing localStorage key: ', key);
+        Logger.info('Removing localStorage key:', key);
         try {
             localStorage.removeItem(key);
         } catch (error) {

@@ -2,7 +2,7 @@
     "appName": "Star Wars",
     "apiType": "Api",
     "apiBaseUrl": "https://swapi.dev/api/",
-    "mainImage": "/images/StarWars.jpg",
+    "mainImage": "/images/StarWars.png",
     "sections": ["people"],
     "people": {
         "endpoint": "people",

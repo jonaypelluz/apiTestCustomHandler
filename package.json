@@ -11,6 +11,7 @@
         "antd": "^5.1.6",
         "axios": "^1.6.2",
         "cra-template": "1.2.0",
+        "openai": "^4.20.1",
         "prop-types": "^15.8.1",
         "react": "^18.2.0",
         "react-dom": "^18.2.0",

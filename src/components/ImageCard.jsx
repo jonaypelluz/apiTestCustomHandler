@@ -11,7 +11,7 @@ const ImageCard = ({ item }) => (
             style={{
                 width: 240,
             }}
-            cover={<img alt={item.title} src={item.image ?? '/images/default.jpeg'} />}
+            cover={<img alt={item.title} src={item.image ?? '/images/default.png'} />}
         >
             <Meta title={item.title} description={item.desc} />
         </Card>
