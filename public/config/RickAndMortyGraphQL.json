@@ -9,6 +9,7 @@
         "keys": ["results", "count"],
         "pagination": "page",
         "perPage": 20,
+        "itemIncludedKeys": ["origin", "gender", "species", "status"],
         "query": "query getCharacters($page: Int!) { characters(page: $page) { info { count } results { id name species image } } }",
         "conversions": ["name|title", "species|desc"]
     },

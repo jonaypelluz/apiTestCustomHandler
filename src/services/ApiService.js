@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { useState } from 'react';
 import gatherApiResponseItems from 'helpers/gatherApiResponseItems';
-import normalizeItems from 'helpers/normalizeItems';
+import { normalizeItems, normalizeItem, normalizeConversions } from 'helpers/normalizeItems';
 import stringToSingular from 'helpers/stringToSingular';
 import Logger from 'services/Logger';
 
@@ -62,6 +62,12 @@ const handleResponse = (response, apiConfig) => {
     return results;
 };
 
+const handleSingleResponse = (response, apiConfig) => {
+    const conversions = normalizeConversions(apiConfig.conversions);
+    const item = normalizeItem(response, conversions, stringToSingular(apiConfig.endpoint));
+    return item;
+};
+
 const ApiService = () => {
     const [loading, setLoading] = useState(false);
 
@@ -100,21 +106,29 @@ const ApiService = () => {
         }
     };
 
-    const getItem = async (url, itemId, useQuery = '') => {
+    const getItem = async (config, section, itemId) => {
+        setLoadingState(true);
+        let url = config.apiBaseUrl;
+        const apiConfig = config[section];
+
+        const endpoint =
+            'singleEndpoint' in apiConfig ? apiConfig.singleEndpoint : apiConfig.endpoint;
+
         try {
-            setLoadingState(true);
+            url += endpoint;
 
             let response;
 
-            if (useQuery !== '') {
-                response = await makeGraphQLRequest(url, useQuery);
+            if (config.apiType === 'GraphQL') {
+                response = await makeGraphQLRequest(url, apiConfig.query, { id: itemId });
             } else {
                 response = await makeRestRequest(`${url}/${itemId}`);
             }
+            Logger.log(`Api response for ${itemId} in ${section}`, response);
 
             setLoadingState(false);
 
-            return response;
+            return handleSingleResponse(response, apiConfig);
         } catch (error) {
             setLoadingState(false);
             throw error;

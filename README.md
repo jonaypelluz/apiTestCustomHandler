@@ -11,10 +11,10 @@ Work In Progess!!!
 
 ## TODO:
 
--   Add saga middleware
--   cache system
--   lazy loading
--   ChatGPT AI Image generation
+-   Add error boundary
+-   Add Saga middleware
+-   Add cache system
+-   Open AI Image generation
 -   ...
 
 ## Config files

@@ -4,6 +4,7 @@ const StorageService = {
     APP_NAME_SELECTED: 'APP_NAME_SELECTED',
     SECTIONS_SELECTED: 'SECTIONS_SELECTED',
     CONFIG_SELECTED: 'CONFIG_SELECTED',
+    SECTION_SELECTED: 'SECTION_SELECTED',
 
     setItem(key, value) {
         Logger.log(`Setting localStorage key: ${key}`, value);

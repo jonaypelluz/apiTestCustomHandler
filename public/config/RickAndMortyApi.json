@@ -9,7 +9,7 @@
         "keys": ["results", "count"],
         "pagination": "page",
         "perPage": 20,
-        "query": "",
+        "itemIncludedKeys": ["origin", "gender", "species", "status"],
         "conversions": ["name|title", "species|desc"]
     },
     "locations": {
@@ -17,7 +17,7 @@
         "keys": ["results", "count"],
         "pagination": "page",
         "perPage": 20,
-        "query": "",
+        "itemIncludedKeys": ["name", "type", "dimension"],
         "conversions": ["name|title", "type|desc"]
     }
 }

@@ -5,7 +5,10 @@ import { Routes, Route } from 'react-router-dom';
 import { lazy, useState, useEffect } from 'react';
 import { useSelector } from 'react-redux';
 import Logger from 'services/Logger';
-import stringToUppercase from 'helpers/stringToUppercase';
+import stringToSingular from 'helpers/stringToSingular';
+
+const Items = lazy(() => import(`pages/Items`));
+const Item = lazy(() => import(`pages/Item`));
 
 const getActiveModules = (sections) => {
     const modules = sections.flatMap((section) => {
@@ -14,15 +17,15 @@ const getActiveModules = (sections) => {
             {
                 path: basePath,
                 exact: true,
-                Component: lazy(() => import(`pages/Items`)),
+                Component: Items,
             },
             {
                 path: `${basePath}/page/:page`,
-                Component: lazy(() => import(`pages/Items`)),
+                Component: Items,
             },
             {
-                path: `${stringToUppercase(basePath, true)}/:id}`,
-                Component: lazy(() => import(`pages/Item`)),
+                path: `${stringToSingular(basePath)}/:id`,
+                Component: Item,
             },
         ];
     });
@@ -54,8 +57,7 @@ const Router = () => {
                 importedModules.map(({ path, Component }) => (
                     <Route
                         key={path}
-                        exact
-                        path={`/${path}`}
+                        path={path}
                         element={
                             <Suspense fallback="loading...">
                                 <Component />

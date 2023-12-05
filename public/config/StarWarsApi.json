@@ -9,7 +9,17 @@
         "keys": ["results", "count"],
         "pagination": "page",
         "perPage": 10,
-        "query": "",
+        "itemIncludedKeys": [
+            "name",
+            "gender",
+            "birth_year",
+            "height",
+            "mass",
+            "hair_color",
+            "skin_color",
+            "eye_color",
+            "homeworld"
+        ],
         "conversions": ["name|title", "gender|desc", "url|id|\\d+"]
     }
 }

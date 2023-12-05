@@ -9,7 +9,7 @@
         "keys": ["results", "count"],
         "pagination": "offset|limit",
         "perPage": 20,
-        "query": "",
-        "conversions": ["name|title", "url|id|/(\\d+)/"]
+        "itemIncludedKeys": ["name", "species", "height", "forms", "base_experience"],
+        "conversions": ["name|title", "url|id|(?<=\\/)\\d+(?=\\/$)"]
     }
 }

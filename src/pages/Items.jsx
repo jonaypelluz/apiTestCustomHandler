@@ -8,12 +8,14 @@ import Pagination from 'components/Pagination';
 import Loader from 'components/Loader';
 import Toast from 'components/Toast';
 import Logger from 'services/Logger';
+import { useSectionContext } from 'store/SectionContext';
 
 const selectedSection = (config, route) => {
     return config[route];
 };
 
 const Items = () => {
+    const sectionContext = useSectionContext();
     const [error, setError] = useState();
     const [items, setItems] = useState({ results: [], count: 0 });
     const { config } = useSelector((state) => state.apiConfig);
@@ -24,6 +26,7 @@ const Items = () => {
     const location = useLocation();
     const route = location.pathname.split('/')[1];
     const section = selectedSection(config, route);
+    sectionContext.setSelectedSection(route);
 
     Logger.log(`Selected section "${route}": `, section);
 

@@ -9,7 +9,7 @@
         "keys": [],
         "pagination": "page[number]",
         "perPage": 20,
-        "query": "",
+        "itemIncludedKeys": ["type", "species", "attributes"],
         "conversions": ["name|title", "species|desc", "image|image"]
     }
 }
