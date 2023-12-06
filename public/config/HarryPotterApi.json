@@ -7,7 +7,7 @@
     "characters": {
         "endpoint": "characters",
         "keys": [],
-        "pagination": "page[number]",
+        "pagination": "page-number-page-size",
         "perPage": 20,
         "itemIncludedKeys": ["type", "species", "attributes"],
         "conversions": ["name|title", "species|desc", "image|image"]
@@ -15,9 +15,9 @@
     "potions": {
         "endpoint": "potions",
         "keys": [],
-        "pagination": "page[number]",
+        "pagination": "page-number-page-size",
         "perPage": 20,
-        "itemIncludedKeys": ["name", "type", "attributes"],
+        "itemIncludedKeys": ["type", "attributes"],
         "conversions": ["name|title", "type|desc", "image|image"]
     }
 }

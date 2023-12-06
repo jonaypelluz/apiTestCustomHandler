@@ -7,17 +7,20 @@
     "characters": {
         "endpoint": "graphql",
         "keys": ["results", "count"],
-        "pagination": "page",
+        "pagination": "page-number",
         "perPage": 20,
         "itemIncludedKeys": ["origin", "gender", "species", "status"],
+        "singleQuery": "query getCharacter($id: ID!) { character(id: $id) { id name species image status gender origin { dimension } } }",
         "query": "query getCharacters($page: Int!) { characters(page: $page) { info { count } results { id name species image } } }",
-        "conversions": ["name|title", "species|desc"]
+        "conversions": ["name|title", "species|desc", "image|image"]
     },
     "locations": {
         "endpoint": "graphql",
         "keys": ["results", "count"],
-        "pagination": "page",
+        "pagination": "page-number",
         "perPage": 20,
+        "itemIncludedKeys": ["dimension", "type"],
+        "singleQuery": "query getLocation($id: ID!) { location(id: $id) { id name type dimension } }",
         "query": "query getLocations($page: Int!) { locations(page: $page) { info { count } results { id name type } } }",
         "conversions": ["name|title", "type|desc"]
     }

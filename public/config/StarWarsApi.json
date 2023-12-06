@@ -3,15 +3,13 @@
     "apiType": "Api",
     "apiBaseUrl": "https://swapi.dev/api/",
     "mainImage": "/images/StarWars.png",
-    "sections": ["people"],
+    "sections": ["people", "planets"],
     "people": {
         "endpoint": "people",
         "keys": ["results", "count"],
-        "pagination": "page",
+        "pagination": "page-number",
         "perPage": 10,
         "itemIncludedKeys": [
-            "name",
-            "gender",
             "birth_year",
             "height",
             "mass",
@@ -21,5 +19,21 @@
             "homeworld"
         ],
         "conversions": ["name|title", "gender|desc", "url|id|\\d+"]
+    },
+    "planets": {
+        "endpoint": "planets",
+        "keys": ["results", "count"],
+        "pagination": "page-number",
+        "perPage": 10,
+        "itemIncludedKeys": [
+            "rotation_period",
+            "orbital_period",
+            "diameter",
+            "climate",
+            "gravity",
+            "surface_water",
+            "population"
+        ],
+        "conversions": ["name|title", "terrain|desc", "url|id|\\d+"]
     }
 }

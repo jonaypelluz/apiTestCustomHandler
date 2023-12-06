@@ -7,17 +7,17 @@
     "characters": {
         "endpoint": "character",
         "keys": ["results", "count"],
-        "pagination": "page",
+        "pagination": "page-number",
         "perPage": 20,
         "itemIncludedKeys": ["origin", "gender", "species", "status"],
-        "conversions": ["name|title", "species|desc"]
+        "conversions": ["name|title", "species|desc", "image|image"]
     },
     "locations": {
         "endpoint": "location",
         "keys": ["results", "count"],
-        "pagination": "page",
+        "pagination": "page-number",
         "perPage": 20,
-        "itemIncludedKeys": ["name", "type", "dimension"],
+        "itemIncludedKeys": ["type", "dimension"],
         "conversions": ["name|title", "type|desc"]
     }
 }

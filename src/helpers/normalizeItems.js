@@ -34,9 +34,11 @@ const normalizeItem = (object, normalizedConversions, path) => {
     return converted;
 };
 
-const normalizeConversions = (conversions) => {
+const normalizeConversions = (config) => {
     let regex = [];
     let mutations = [];
+    const conversions = config.conversions;
+
     conversions.forEach((item) => {
         const parts = item.split('|');
         if (parts.length > 2) {
@@ -46,11 +48,18 @@ const normalizeConversions = (conversions) => {
         }
     });
 
+    const includedKeys = config.itemIncludedKeys.reduce((acc, curr) => {
+        acc[curr] = curr;
+        return acc;
+    }, {});
+
+    mutations = { ...mutations, ...includedKeys };
+
     return { regex, mutations };
 };
 
-const normalizeItems = (array, conversions, path) => {
-    const normalizedConversions = normalizeConversions(conversions);
+const normalizeItems = (array, config, path) => {
+    const normalizedConversions = normalizeConversions(config);
     let converted = [];
 
     array.map((s) => {

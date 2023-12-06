@@ -1,9 +1,9 @@
 import axios from 'axios';
 import { useState } from 'react';
-import gatherApiResponseItems from 'helpers/gatherApiResponseItems';
-import { normalizeItems, normalizeItem, normalizeConversions } from 'helpers/normalizeItems';
-import stringToSingular from 'helpers/stringToSingular';
 import Logger from 'services/Logger';
+import PaginationService from 'services/PaginationService';
+import ResponseService from 'services/ResponseService';
+import buildQueryString from 'helpers/buildQueryString';
 
 const makeGraphQLRequest = async (url, query, variables) => {
     return await axios
@@ -24,52 +24,11 @@ const makeRestRequest = async (url) => {
         );
 };
 
-const buildQueryString = (url, variables) => {
-    const queryString = Object.keys(variables)
-        .map((key) => `${encodeURIComponent(key)}=${encodeURIComponent(variables[key])}`)
-        .join('&');
-    return `${url}?${queryString}`;
-};
-
-/**
- * TODO:
- * I am trying to find a more generic way to deal with this
- * */
-const createsPaginationObject = (config, currentPage) => {
-    let body = {};
-
-    if (config.pagination.includes('|')) {
-        // offset / limit
-        const parts = config.pagination.split('|');
-        parts.forEach((part) => {
-            body[part] = part === 'limit' ? config.perPage : config.perPage * (currentPage - 1);
-        });
-    } else {
-        // page
-        body[config.pagination] = currentPage;
-    }
-
-    return body;
-};
-
-const handleResponse = (response, apiConfig) => {
-    let results = gatherApiResponseItems(apiConfig.keys, response);
-    results.results = normalizeItems(
-        results.results,
-        apiConfig.conversions,
-        stringToSingular(apiConfig.endpoint),
-    );
-    return results;
-};
-
-const handleSingleResponse = (response, apiConfig) => {
-    const conversions = normalizeConversions(apiConfig.conversions);
-    const item = normalizeItem(response, conversions, stringToSingular(apiConfig.endpoint));
-    return item;
-};
-
 const ApiService = () => {
     const [loading, setLoading] = useState(false);
+
+    const paginationService = new PaginationService();
+    const responseService = new ResponseService();
 
     const setLoadingState = (status) => {
         setLoading(status);
@@ -81,7 +40,8 @@ const ApiService = () => {
 
         try {
             const apiConfig = config[section];
-            const paginationObj = createsPaginationObject(apiConfig, currentPage);
+            const paginationObj = paginationService.createPaginationObject(apiConfig, currentPage);
+
             url = url + apiConfig.endpoint;
 
             let response;
@@ -93,13 +53,14 @@ const ApiService = () => {
                     Object.keys(paginationObj).length > 0
                         ? buildQueryString(url, paginationObj)
                         : url;
+                Logger.debug('URL', url);
                 response = await makeRestRequest(url);
             }
             Logger.log(`Api response for ${section}`, response);
 
             setLoadingState(false);
 
-            return handleResponse(response, apiConfig);
+            return responseService.handleApiResponse('multiple', response, apiConfig, section);
         } catch (error) {
             setLoadingState(false);
             throw error;
@@ -111,16 +72,12 @@ const ApiService = () => {
         let url = config.apiBaseUrl;
         const apiConfig = config[section];
 
-        const endpoint =
-            'singleEndpoint' in apiConfig ? apiConfig.singleEndpoint : apiConfig.endpoint;
-
         try {
-            url += endpoint;
-
+            url += apiConfig.endpoint;
             let response;
 
             if (config.apiType === 'GraphQL') {
-                response = await makeGraphQLRequest(url, apiConfig.query, { id: itemId });
+                response = await makeGraphQLRequest(url, apiConfig.singleQuery, { id: itemId });
             } else {
                 response = await makeRestRequest(`${url}/${itemId}`);
             }
@@ -128,7 +85,7 @@ const ApiService = () => {
 
             setLoadingState(false);
 
-            return handleSingleResponse(response, apiConfig);
+            return responseService.handleApiResponse('single', response, apiConfig, section);
         } catch (error) {
             setLoadingState(false);
             throw error;
