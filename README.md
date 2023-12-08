@@ -1,4 +1,4 @@
-**CraftAPIxplorer with Reactjs**
+**CraftAPIxplorer: Your Ultimate Companion for API Mastery in Every Job Test and Beyond.**
 
 Work In Progess!!!
 
