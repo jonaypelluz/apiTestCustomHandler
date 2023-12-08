@@ -1,4 +1,4 @@
-PROJECT_NAME = api-test-custom-handler
+PROJECT_NAME = craft-api-xplorer
 CONTAINER = $$(docker ps | grep ${PROJECT_NAME} | awk '{print $$1}')
 DOCKER_COMPOSE := --env-file .env -p ${PROJECT_NAME} -f ops/docker/docker-compose.yml
 

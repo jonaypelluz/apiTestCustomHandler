@@ -22,6 +22,7 @@ const Home = () => {
                     'RickAndMortyGraphQL.json',
                     'StarWarsApi.json',
                     'RickAndMortyApi.json',
+                    // 'ArtInstituteOfChicago.json',
                 ];
                 const dataPromises = files.map(async (fileName) => {
                     const fileResponse = await fetch(`${configFolder}/${fileName}`);
@@ -47,7 +48,7 @@ const Home = () => {
     return (
         <Layout style={{ padding: '0 50px' }}>
             <Title style={{ textAlign: 'center', marginBottom: '100px', marginTop: '100px' }}>
-                Choose an api to browse the content
+                CraftAPIxplorer - Choose an api to browse the content
             </Title>
             <Content style={{ padding: '20px', backgroundColor: '#fff' }}>
                 <Row>

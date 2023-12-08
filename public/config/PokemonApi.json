@@ -1,6 +1,6 @@
 {
     "appName": "Pokemon",
-    "apiType": "Api",
+    "apiType": "RestApi",
     "apiBaseUrl": "https://pokeapi.co/api/v2/",
     "mainImage": "/images/Pokemon.png",
     "sections": ["pokemons", "types"],
@@ -9,7 +9,7 @@
         "keys": ["results", "count"],
         "pagination": "offset-limit",
         "perPage": 20,
-        "itemIncludedKeys": ["name", "species", "height", "forms", "base_experience"],
+        "itemIncludedKeys": ["species", "height", "forms", "base_experience"],
         "conversions": ["name|title", "url|id|(?<=\\/)\\d+(?=\\/$)"]
     },
     "types": {

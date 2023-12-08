@@ -1,4 +1,4 @@
-**API Test Custom Handler with Reactjs**
+**CraftAPIxplorer with Reactjs**
 
 Work In Progess!!!
 
@@ -14,7 +14,7 @@ Work In Progess!!!
 -   Add error boundary
 -   Add Saga middleware
 -   Add cache system
--   Open AI Image generation  (Bash created, credits need it)
+-   Open AI Image generation (Bash created, credits need it)
 -   ...
 
 ## Config files
@@ -36,7 +36,7 @@ Work In Progess!!!
 ```
 {
     "appName": "Example APP",
-    "apiType": "Api",
+    "apiType": "RESTful",
     "apiBaseUrl": "http://example.local/api/",
     "mainImage": "/images/ExampleImage.jpg",
     "sections": ["ExampleSection"],

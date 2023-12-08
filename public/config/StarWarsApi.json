@@ -1,6 +1,6 @@
 {
     "appName": "Star Wars",
-    "apiType": "Api",
+    "apiType": "RestApi",
     "apiBaseUrl": "https://swapi.dev/api/",
     "mainImage": "/images/StarWars.png",
     "sections": ["people", "planets"],

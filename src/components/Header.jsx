@@ -9,7 +9,7 @@ const { Header } = Layout;
 const Head = () => {
     const initialItems = [
         {
-            label: <Link to="/">Home</Link>,
+            label: <Link to="/">CraftAPIxplorer</Link>,
             icon: <HomeOutlined />,
             key: 'list',
         },

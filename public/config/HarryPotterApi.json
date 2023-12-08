@@ -1,6 +1,6 @@
 {
     "appName": "Harry Potter",
-    "apiType": "Api",
+    "apiType": "RestApi",
     "apiBaseUrl": "https://api.potterdb.com/v1/",
     "mainImage": "/images/HarryPotter.png",
     "sections": ["characters", "potions"],
@@ -9,7 +9,7 @@
         "keys": [],
         "pagination": "page-number-page-size",
         "perPage": 20,
-        "itemIncludedKeys": ["type", "species", "attributes"],
+        "itemIncludedKeys": ["type", "species", "gender", "blood_status", "patronus", "nationality", "born"],
         "conversions": ["name|title", "species|desc", "image|image"]
     },
     "potions": {

@@ -1,6 +1,6 @@
 {
     "appName": "Rick and Morty",
-    "apiType": "Api",
+    "apiType": "RestApi",
     "apiBaseUrl": "https://rickandmortyapi.com/api/",
     "mainImage": "/images/RickAndMorty.png",
     "sections": ["characters", "locations"],
