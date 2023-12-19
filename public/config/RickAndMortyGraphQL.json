@@ -6,7 +6,7 @@
     "sections": ["characters", "locations"],
     "characters": {
         "endpoint": "graphql",
-        "keys": ["results", "count"],
+        "apiStructure": { "results": "characters|results", "count": "characters|info|count" },
         "pagination": "page-number",
         "perPage": 20,
         "itemIncludedKeys": ["origin", "gender", "species", "status"],
@@ -16,7 +16,7 @@
     },
     "locations": {
         "endpoint": "graphql",
-        "keys": ["results", "count"],
+        "apiStructure": { "results": "locations|results", "count": "locations|info|count" },
         "pagination": "page-number",
         "perPage": 20,
         "itemIncludedKeys": ["dimension", "type"],

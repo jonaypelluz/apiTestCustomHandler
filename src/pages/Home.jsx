@@ -22,7 +22,7 @@ const Home = () => {
                     'RickAndMortyGraphQL.json',
                     'StarWarsApi.json',
                     'RickAndMortyApi.json',
-                    // 'ArtInstituteOfChicago.json',
+                    'ArtInstituteOfChicago.json',
                 ];
                 const dataPromises = files.map(async (fileName) => {
                     const fileResponse = await fetch(`${configFolder}/${fileName}`);

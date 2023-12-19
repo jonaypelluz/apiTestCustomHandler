@@ -1,6 +1,13 @@
 import Logger from 'services/Logger';
 import iterateObject from 'helpers/iterateObject';
 
+const accessNestedProperty = (obj, key) => {
+    const parts = key.split('|');
+    return parts.reduce((currentObject, key) => {
+        return currentObject && key in currentObject ? currentObject[key] : undefined;
+    }, obj);
+};
+
 const gatherApiResponseItems = (keys, response) => {
     let foundProperties = {};
 
@@ -10,8 +17,12 @@ const gatherApiResponseItems = (keys, response) => {
             results: response,
         };
     } else {
-        keys.forEach((key) => {
-            foundProperties[key] = iterateObject(key, response);
+        Object.keys(keys).forEach((key) => {
+            if (keys[key].indexOf('|') !== -1) {
+                foundProperties[key] = accessNestedProperty(response, keys[key]);
+            } else {
+                foundProperties[key] = iterateObject(keys[key], response);
+            }
         });
     }
 
@@ -21,3 +32,10 @@ const gatherApiResponseItems = (keys, response) => {
 };
 
 export default gatherApiResponseItems;
+
+// const parts = item.split('|');
+// if (parts.length > 2) {
+//     regex[parts[0]] = parts[1] + '|' + parts[2];
+// } else {
+//     mutations[parts[0]] = parts[1];
+// }

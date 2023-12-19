@@ -6,10 +6,16 @@
     "sections": ["artworks"],
     "artworks": {
         "endpoint": "artworks",
-        "keys": ["data", "total"],
+        "apiStructure": { "results": "data|data", "count": "data|pagination|total" },
         "pagination": "page-number",
         "perPage": 12,
-        "itemIncludedKeys": ["artist_title", "category_titles","artwork_type_title", "api_model", "place_of_origin"],
+        "itemIncludedKeys": [
+            "artist_title",
+            "category_titles",
+            "artwork_type_title",
+            "api_model",
+            "place_of_origin"
+        ],
         "conversions": ["title|title", "artist_display|desc", "lqip|image"]
     }
 }

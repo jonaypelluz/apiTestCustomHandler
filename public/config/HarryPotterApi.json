@@ -6,15 +6,23 @@
     "sections": ["characters", "potions"],
     "characters": {
         "endpoint": "characters",
-        "keys": [],
+        "apiStructure": { "results": "data|data", "count": "data|meta|pagination|records" },
         "pagination": "page-number-page-size",
         "perPage": 20,
-        "itemIncludedKeys": ["type", "species", "gender", "blood_status", "patronus", "nationality", "born"],
+        "itemIncludedKeys": [
+            "type",
+            "species",
+            "gender",
+            "blood_status",
+            "patronus",
+            "nationality",
+            "born"
+        ],
         "conversions": ["name|title", "species|desc", "image|image"]
     },
     "potions": {
         "endpoint": "potions",
-        "keys": [],
+        "apiStructure": { "results": "data|data", "count": "data|meta|pagination|records" },
         "pagination": "page-number-page-size",
         "perPage": 20,
         "itemIncludedKeys": ["type", "attributes"],

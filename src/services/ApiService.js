@@ -17,11 +17,7 @@ const makeGraphQLRequest = async (url, query, variables) => {
 };
 
 const makeRestRequest = async (url) => {
-    return await axios
-        .get(url)
-        .then((response) =>
-            response.data && response.data.data ? response.data.data : response.data,
-        );
+    return await axios.get(url).then((response) => response);
 };
 
 const ApiService = () => {
@@ -53,7 +49,6 @@ const ApiService = () => {
                     Object.keys(paginationObj).length > 0
                         ? buildQueryString(url, paginationObj)
                         : url;
-                Logger.debug('URL', url);
                 response = await makeRestRequest(url);
             }
             Logger.log(`Api response for ${section}`, response);

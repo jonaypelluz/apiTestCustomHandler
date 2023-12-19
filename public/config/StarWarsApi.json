@@ -6,7 +6,7 @@
     "sections": ["people", "planets"],
     "people": {
         "endpoint": "people",
-        "keys": ["results", "count"],
+        "apiStructure": { "results": "data|results", "count": "data|count" },
         "pagination": "page-number",
         "perPage": 10,
         "itemIncludedKeys": [
@@ -22,7 +22,7 @@
     },
     "planets": {
         "endpoint": "planets",
-        "keys": ["results", "count"],
+        "apiStructure": { "results": "data|results", "count": "data|count" },
         "pagination": "page-number",
         "perPage": 10,
         "itemIncludedKeys": [
