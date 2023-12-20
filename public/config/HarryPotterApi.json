@@ -7,6 +7,7 @@
     "characters": {
         "endpoint": "characters",
         "jsonStructure": { "results": "data|data", "count": "data|meta|pagination|records" },
+        "jsonDepth": 3,
         "pagination": "page-number-page-size",
         "perPage": 20,
         "itemIncludedKeys": [
@@ -23,6 +24,7 @@
     "potions": {
         "endpoint": "potions",
         "jsonStructure": { "results": "data|data", "count": "data|meta|pagination|records" },
+        "jsonDepth": 3,
         "pagination": "page-number-page-size",
         "perPage": 20,
         "itemIncludedKeys": ["type", "attributes"],
