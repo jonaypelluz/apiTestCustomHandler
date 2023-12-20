@@ -6,7 +6,8 @@
     "sections": ["artworks"],
     "artworks": {
         "endpoint": "artworks",
-        "apiStructure": { "results": "data|data", "count": "data|pagination|total" },
+        "jsonStructure": { "results": "data|data", "count": "data|pagination|total" },
+        "jsonDepth": 3,
         "pagination": "page-number",
         "perPage": 12,
         "itemIncludedKeys": [

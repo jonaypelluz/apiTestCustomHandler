@@ -6,7 +6,7 @@ const extractMatchedString = (inputString, regexPattern) => {
     return matches.length > 0 ? matches[0] : inputString;
 };
 
-const normalizeItem = (object, normalizedConversions, path) => {
+const normalizeItem = (object, normalizedConversions, path, depth = 2) => {
     const regex = normalizedConversions.regex;
     const mutations = normalizedConversions.mutations;
     let converted = {};
@@ -16,13 +16,13 @@ const normalizeItem = (object, normalizedConversions, path) => {
     });
 
     Object.keys(mutations).forEach((key) => {
-        const foundValue = iterateObject(key, converted);
-        converted[key] = foundValue; // We keep the old property in a higher depth
+        const foundValue = iterateObject(key, converted, depth);
+        converted[key] = foundValue; // We keep the old property also
         converted[mutations[key]] = foundValue;
     });
 
     Object.keys(regex).forEach((key) => {
-        let foundKey = iterateObject(key, converted);
+        let foundKey = iterateObject(key, converted, depth);
         if (foundKey) {
             const parts = regex[key].split('|');
             converted[parts[0]] = extractMatchedString(foundKey, parts[1]);

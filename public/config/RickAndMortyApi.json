@@ -6,7 +6,7 @@
     "sections": ["characters", "locations"],
     "characters": {
         "endpoint": "character",
-        "apiStructure": { "results": "data|results", "count": "data|info|count" },
+        "jsonStructure": { "results": "data|results", "count": "data|info|count" },
         "pagination": "page-number",
         "perPage": 20,
         "itemIncludedKeys": ["origin", "gender", "species", "status"],
@@ -14,7 +14,7 @@
     },
     "locations": {
         "endpoint": "location",
-        "apiStructure": { "results": "data|results", "count": "data|info|count" },
+        "jsonStructure": { "results": "data|results", "count": "data|info|count" },
         "pagination": "page-number",
         "perPage": 20,
         "itemIncludedKeys": ["type", "dimension"],

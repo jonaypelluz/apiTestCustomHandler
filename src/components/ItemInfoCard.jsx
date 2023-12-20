@@ -10,7 +10,11 @@ const ItemInfoCard = ({ item, itemIncludedKeys }) => {
             return Object.keys(obj).map((key) =>
                 includeChildProps || includedKeys.length === 0 || includedKeys.includes(key) ? (
                     <div key={key}>
-                        {includeChildProps ? '' : <Text strong>{stringToCapitalize(key)}:</Text>}{' '}
+                        {includeChildProps ? (
+                            ''
+                        ) : (
+                            <Text strong>{stringToCapitalize(key.replace(/_/g, ' '))}: </Text>
+                        )}
                         {itemToString(obj[key], includedKeys, true)}
                     </div>
                 ) : null,

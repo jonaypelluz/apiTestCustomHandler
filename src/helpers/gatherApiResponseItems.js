@@ -32,10 +32,3 @@ const gatherApiResponseItems = (keys, response) => {
 };
 
 export default gatherApiResponseItems;
-
-// const parts = item.split('|');
-// if (parts.length > 2) {
-//     regex[parts[0]] = parts[1] + '|' + parts[2];
-// } else {
-//     mutations[parts[0]] = parts[1];
-// }

@@ -8,6 +8,7 @@ Work In Progess!!!
 -   https://swapi.dev/
 -   https://pokeapi.co/
 -   https://api.potterdb.com/
+-   https://api.artic.edu/docs/
 
 ## TODO:
 
@@ -25,7 +26,8 @@ Work In Progess!!!
 -   **mainImage**: The image that will be use in the Home page.
 -   **sections**: This will be the diferent sections that the Api has.
     -   **endpoint**: Part of the endpoint where it will gather the info for that section.
-    -   **keys**: keys that will parse to get the info.
+    -   **jsonStructure**: It will be used by the app to find the results in the response json.
+    -   **jsonDepth**: It will be used by the app to parse the conversions and itemIncludedKeys the result json in the single response.
     -   **pagination**: This is the type of pagination ['offset-limit', 'page-number', 'page-number-page-size'].
     -   **perPage**: Quatity of pages that the call willl receive by default.
     -   **singleQuery**: If GraphQL the query need it for single item endpoints.
@@ -36,17 +38,16 @@ Work In Progess!!!
 ```
 {
     "appName": "Example APP",
-    "apiType": "RESTful",
+    "apiType": "RestApi",
     "apiBaseUrl": "http://example.local/api/",
     "mainImage": "/images/ExampleImage.jpg",
     "sections": ["ExampleSection"],
     "ExampleSection": {
         "endpoint": "endpoint",
-        "keys": ["count", "results"],
+        "jsonStructure": { "results": "data|data", "count": "data|pagination|total" },
+        "jsonDepth": 3,
         "pagination": "page-number",
         "perPage": 10,
-        "singleQuery": "",
-        "query": "",
         "itemIncludedKeys": ["height", "width", "status"],
         "conversions": ["name|title", "description|desc", "url|id|\\d+"]
     }

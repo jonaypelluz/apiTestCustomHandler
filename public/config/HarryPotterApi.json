@@ -6,7 +6,7 @@
     "sections": ["characters", "potions"],
     "characters": {
         "endpoint": "characters",
-        "apiStructure": { "results": "data|data", "count": "data|meta|pagination|records" },
+        "jsonStructure": { "results": "data|data", "count": "data|meta|pagination|records" },
         "pagination": "page-number-page-size",
         "perPage": 20,
         "itemIncludedKeys": [
@@ -22,7 +22,7 @@
     },
     "potions": {
         "endpoint": "potions",
-        "apiStructure": { "results": "data|data", "count": "data|meta|pagination|records" },
+        "jsonStructure": { "results": "data|data", "count": "data|meta|pagination|records" },
         "pagination": "page-number-page-size",
         "perPage": 20,
         "itemIncludedKeys": ["type", "attributes"],

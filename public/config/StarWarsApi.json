@@ -6,7 +6,7 @@
     "sections": ["people", "planets"],
     "people": {
         "endpoint": "people",
-        "apiStructure": { "results": "data|results", "count": "data|count" },
+        "jsonStructure": { "results": "data|results", "count": "data|count" },
         "pagination": "page-number",
         "perPage": 10,
         "itemIncludedKeys": [
@@ -22,7 +22,7 @@
     },
     "planets": {
         "endpoint": "planets",
-        "apiStructure": { "results": "data|results", "count": "data|count" },
+        "jsonStructure": { "results": "data|results", "count": "data|count" },
         "pagination": "page-number",
         "perPage": 10,
         "itemIncludedKeys": [

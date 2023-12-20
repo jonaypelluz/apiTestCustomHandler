@@ -5,7 +5,11 @@ import stringToSingular from 'helpers/stringToSingular';
 class SingleResponse extends ResponseAdapter {
     handleResponse(response, apiConfig, section) {
         const conversions = normalizeConversions(apiConfig);
-        const item = normalizeItem(response, conversions, stringToSingular(section));
+        let depth = 2;
+        if (apiConfig.jsonDepth) {
+            depth = apiConfig.jsonDepth;
+        }
+        const item = normalizeItem(response, conversions, stringToSingular(section), depth);
         return item;
     }
 }
