@@ -11,9 +11,7 @@ const makeGraphQLRequest = async (url, query, variables) => {
             query,
             variables,
         })
-        .then((response) =>
-            response.data && response.data.data ? response.data.data : response.data,
-        );
+        .then((response) => response);
 };
 
 const makeRestRequest = async (url) => {
