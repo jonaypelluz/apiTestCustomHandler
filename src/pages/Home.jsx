@@ -46,17 +46,17 @@ const Home = () => {
     };
 
     return (
-        <Layout style={{ padding: '0 50px' }}>
-            <Title style={{ textAlign: 'center', marginBottom: '100px', marginTop: '100px' }}>
+        <Layout style={{ padding: '0 24px' }}>
+            <Title style={{ textAlign: 'center', margin: '50px 0 30px' }}>
                 CraftAPIxplorer - Choose an api to browse the content
             </Title>
-            <Content style={{ padding: '20px', backgroundColor: '#fff' }}>
-                <Row>
+            <Content style={{ padding: '12px', backgroundColor: '#fff' }}>
+                <Row gutter={[16, 16]}>
                     {fileData.map((file, idx) => (
-                        <Col style={{ margin: '10px' }} key={idx}>
+                        <Col key={idx} xs={12} sm={8} md={8} lg={6}>
                             <Card
                                 hoverable
-                                style={{ width: 240 }}
+                                style={{ maxWidth: '240px' }}
                                 className={
                                     appName === file.content.appName
                                         ? 'home-card selected-card'
