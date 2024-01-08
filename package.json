@@ -9,7 +9,7 @@
         "@testing-library/react": "^14.1.2",
         "@testing-library/user-event": "^14.5.2",
         "antd": "^5.12.5",
-        "axios": "^1.6.3",
+        "axios": "^1.6.5",
         "cra-template": "1.2.0",
         "openai": "^4.24.1",
         "prop-types": "^15.8.1",
