@@ -6,17 +6,25 @@
     "sections": ["characters", "locations"],
     "characters": {
         "endpoint": "graphql",
-        "jsonStructure": { "results": "characters|results", "count": "characters|info|count" },
+        "jsonStructure": {
+            "results": "data|data|characters|results",
+            "count": "data|data|characters|info|count"
+        },
+        "jsonDepth": 4,
         "pagination": "page-number",
         "perPage": 20,
-        "itemIncludedKeys": ["origin", "gender", "species", "status"],
+        "itemIncludedKeys": ["dimension", "gender", "species", "status"],
         "singleQuery": "query getCharacter($id: ID!) { character(id: $id) { id name species image status gender origin { dimension } } }",
         "query": "query getCharacters($page: Int!) { characters(page: $page) { info { count } results { id name species image } } }",
         "conversions": ["name|title", "species|desc", "image|image"]
     },
     "locations": {
         "endpoint": "graphql",
-        "jsonStructure": { "results": "locations|results", "count": "locations|info|count" },
+        "jsonStructure": {
+            "results": "data|data|locations|results",
+            "count": "data|data|locations|info|count"
+        },
+        "jsonDepth": 4,
         "pagination": "page-number",
         "perPage": 20,
         "itemIncludedKeys": ["dimension", "type"],
