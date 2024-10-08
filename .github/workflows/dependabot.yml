@@ -1,0 +1,30 @@
+name: Build dependabot PRs
+on:
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18.19.1'
+      - name: Restore cache
+        uses: actions/cache@v4
+        with:
+          path: node_modules
+          key: yarn-${{ hashFiles('**/yarn.lock') }}-${{ hashFiles('**.[jt]s', '**.[jt]sx') }}
+          restore-keys: |
+            yarn-${{ hashFiles('**/yarn.lock') }}-
+      - name: Install Dependencies
+        run: yarn install
+      - name: Prepare Environment File
+        run: mv ops/docker/app/.env.production .env.production
+      - name: Run Tests
+        run: yarn test
+      - name: Build App
+        run: yarn build

@@ -2,9 +2,9 @@
     "compilerOptions": {
         "baseUrl": "src",
         "paths": {
-            "images/*": ["./public/images/*"],
-        },
+            "images/*": ["./public/images/*"]
+        }
     },
     "exclude": ["dist", "node_modules"],
-    "include": ["src"],
+    "include": ["src"]
 }
